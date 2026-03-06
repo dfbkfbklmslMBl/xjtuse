@@ -1,0 +1,13 @@
+
+State Machine - |seven|top:top_inst|game_controller:game_controller_inst|game_state
+Name game_state.GAME_OVER game_state.PAUSED game_state.PLAYING game_state.IDLE 
+game_state.IDLE 0 0 0 0 
+game_state.PLAYING 0 0 1 1 
+game_state.PAUSED 0 1 0 1 
+game_state.GAME_OVER 1 0 0 1 
+
+State Machine - |seven|top:top_inst|cpu_core:cpu_core_inst|state
+Name state.FETCH state.EXECUTE state.DECODE 
+state.FETCH 0 0 0 
+state.DECODE 1 0 1 
+state.EXECUTE 1 1 0 

@@ -1,0 +1,7 @@
+
+State Machine - |LED_Control|state
+Name state.LED_BLINK_FAST state.LED_BLINK_SLOW state.LED_ON state.IDLE 
+state.IDLE 0 0 0 0 
+state.LED_ON 0 0 1 1 
+state.LED_BLINK_SLOW 0 1 0 1 
+state.LED_BLINK_FAST 1 0 0 1 

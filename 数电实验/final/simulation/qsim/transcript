@@ -1,0 +1,55 @@
+# do key_led.do 
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module key_led
+# 
+# Top level modules:
+# 	key_led
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module key_led_vlg_sample_tst
+# -- Compiling module key_led_vlg_check_tst
+# -- Compiling module key_led_vlg_vec_tst
+# 
+# Top level modules:
+# 	key_led_vlg_vec_tst
+# vsim -L cycloneiv_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate -c -voptargs=\"+acc\" -t 1ps -novopt work.key_led_vlg_vec_tst 
+# Loading work.key_led_vlg_vec_tst
+# Loading work.key_led
+# Loading cycloneiv_ver.cycloneiv_io_obuf
+# Loading cycloneiv_ver.cycloneiv_io_ibuf
+# Loading cycloneiv_ver.cycloneiv_clkctrl
+# Loading cycloneiv_ver.cycloneiv_mux41
+# Loading cycloneiv_ver.cycloneiv_ena_reg
+# Loading cycloneiv_ver.cycloneiv_lcell_comb
+# Loading altera_ver.dffeas
+# Loading work.key_led_vlg_sample_tst
+# Loading work.key_led_vlg_check_tst
+# Loading altera_ver.PRIM_GDFF_LOW
+# ERROR! Vector Mismatch for output port led[1] :: @time = 1000000.000 ps
+#      Expected value = 00000000
+#      Real value = 10101010
+# ERROR! Vector Mismatch for output port led[3] :: @time = 1000000.000 ps
+#      Expected value = 00000000
+#      Real value = 10101010
+# ERROR! Vector Mismatch for output port led[5] :: @time = 1000000.000 ps
+#      Expected value = 00000000
+#      Real value = 10101010
+# ERROR! Vector Mismatch for output port led[7] :: @time = 1000000.000 ps
+#      Expected value = 00000000
+#      Real value = 10101010
+# ERROR! Vector Mismatch for output port led[0] :: @time = 1050000.000 ps
+#      Expected value = 00000000
+#      Real value = 01010101
+# ERROR! Vector Mismatch for output port led[2] :: @time = 1050000.000 ps
+#      Expected value = 00000000
+#      Real value = 01010101
+# ERROR! Vector Mismatch for output port led[4] :: @time = 1050000.000 ps
+#      Expected value = 00000000
+#      Real value = 01010101
+# ERROR! Vector Mismatch for output port led[6] :: @time = 1050000.000 ps
+#      Expected value = 00000000
+#      Real value = 01010101
+#           8 mismatched vectors : Simulation failed !
+# ** Note: $finish    : Waveform6.vwf.vt(285)
+#    Time: 5 us  Iteration: 0  Instance: /key_led_vlg_vec_tst/tb_out

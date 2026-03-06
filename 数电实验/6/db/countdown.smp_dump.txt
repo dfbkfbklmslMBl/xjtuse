@@ -1,0 +1,5 @@
+
+State Machine - |countdown|state
+Name state.ST_COUNT 
+state.ST_SETTIME 0 
+state.ST_COUNT 1 

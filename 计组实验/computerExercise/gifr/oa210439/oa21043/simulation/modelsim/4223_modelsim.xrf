@@ -1,0 +1,17 @@
+vendor_name = ModelSim
+source_file = 1, E:/oa21043/4223.bdf
+source_file = 1, D:/quartus/output_files/Chain2.cdf
+source_file = 1, D:/quartus/output_files/Chain3.cdf
+source_file = 1, E:/oa21043/db/4223.cbx.xml
+design_name = \4223\
+instance = comp, \T1~output\, T1~output, \4223\, 1
+instance = comp, \T2~output\, T2~output, \4223\, 1
+instance = comp, \T3~output\, T3~output, \4223\, 1
+instance = comp, \T4~output\, T4~output, \4223\, 1
+instance = comp, \inst1~feeder\, inst1~feeder, \4223\, 1
+instance = comp, \RST1~input\, RST1~input, \4223\, 1
+instance = comp, \inst2~feeder\, inst2~feeder, \4223\, 1
+instance = comp, \inst3~feeder\, inst3~feeder, \4223\, 1
+instance = comp, \CLK1~input\, CLK1~input, \4223\, 1
+instance = comp, \inst8~clkctrl\, inst8~clkctrl, \4223\, 1
+instance = comp, \inst9~0\, inst9~0, \4223\, 1

@@ -1,0 +1,38 @@
+# do task6.do 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module task6
+# 
+# Top level modules:
+# 	task6
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module task6_vlg_sample_tst
+# -- Compiling module task6_vlg_check_tst
+# ** Warning: task6.vwf.vt(160): (vlog-2576) [BSOB] - Bit-select into 'SE_expected_prev' is out of bounds.
+# 
+# ** Warning: task6.vwf.vt(160): (vlog-2576) [BSOB] - Bit-select into 'SE_prev' is out of bounds.
+# 
+# ** Warning: task6.vwf.vt(160): (vlog-2576) [BSOB] - Bit-select into 'SE_expected_prev' is out of bounds.
+# 
+# ** Warning: task6.vwf.vt(161): (vlog-2576) [BSOB] - Bit-select into 'SE_expected_prev' is out of bounds.
+# 
+# ** Warning: task6.vwf.vt(161): (vlog-2576) [BSOB] - Bit-select into 'last_SE_exp' is out of bounds.
+# 
+# ** Warning: task6.vwf.vt(170): (vlog-2576) [BSOB] - Bit-select into 'last_SE_exp' is out of bounds.
+# 
+# ** Warning: task6.vwf.vt(170): (vlog-2576) [BSOB] - Bit-select into 'SE_expected_prev' is out of bounds.
+# 
+# -- Compiling module task6_vlg_vec_tst
+# 
+# Top level modules:
+# 	task6_vlg_vec_tst
+# vsim -L cycloneiii_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate -c -voptargs=\"+acc\" -t 1ps -novopt work.task6_vlg_vec_tst 
+# Loading work.task6_vlg_vec_tst
+# Loading work.task6
+# Loading cycloneiii_ver.cycloneiii_io_obuf
+# Loading cycloneiii_ver.cycloneiii_io_ibuf
+# Loading cycloneiii_ver.cycloneiii_lcell_comb
+# Loading work.task6_vlg_sample_tst
+# Loading work.task6_vlg_check_tst
+# Simulation passed !
+# ** Note: $finish    : task6.vwf.vt(249)
+#    Time: 1 us  Iteration: 0  Instance: /task6_vlg_vec_tst/tb_out

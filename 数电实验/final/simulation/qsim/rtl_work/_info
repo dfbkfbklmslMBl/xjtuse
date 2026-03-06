@@ -1,0 +1,81 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\QUARTUSDATA\finall\simulation\qsim
+vkey_led
+Ie8M6dh=7`GGW:O]VaO:8a3
+V0ke_elXE;68zBSUJfE7gW1
+Z1 dD:\QUARTUSDATA\finall\simulation\qsim
+w1718093548
+Z2 8key_led.vo
+Z3 Fkey_led.vo
+L0 31
+Z4 OV;L;10.1d;51
+r1
+31
+Z5 !s90 -work|work|key_led.vo|
+Z6 o-work work -O0
+!i10b 1
+!s100 RVBf1iW0AjVkTah5h0hJH0
+!s85 0
+!s108 1718093549.075000
+Z7 !s107 key_led.vo|
+!s101 -O0
+vkey_led_vlg_check_tst
+!i10b 1
+!s100 JBCjaN2RQ0A]S<PICHMjC2
+IIcEX79ii]cN4jCU<Hh3Gg0
+VgN1CRhJC=@hfz`41Ebiha0
+R1
+Z8 w1718093547
+Z9 8Waveform6.vwf.vt
+Z10 FWaveform6.vwf.vt
+L0 61
+R4
+r1
+!s85 0
+31
+Z11 !s108 1718093549.136000
+Z12 !s107 Waveform6.vwf.vt|
+Z13 !s90 -work|work|Waveform6.vwf.vt|
+!s101 -O0
+R6
+vkey_led_vlg_sample_tst
+!i10b 1
+!s100 6oIV8]bcRTBSmmVM1LF]E2
+Ihzg^DnB_5?ZF=PYzJ>^eo2
+Z14 VS<?Po2C_5hQG5k[_ED<lU1
+R1
+R8
+R9
+R10
+L0 29
+R4
+r1
+!s85 0
+31
+R11
+R12
+R13
+!s101 -O0
+R6
+vkey_led_vlg_vec_tst
+!i10b 1
+!s100 nUnKNBiD=9R^6<XY1j>403
+IUn=zbn@za5hSAhmCgbhf`2
+Z15 V=C>]bI0UX`3EP@6W9ONgH2
+R1
+R8
+R9
+R10
+L0 289
+R4
+r1
+!s85 0
+31
+R11
+R12
+R13
+!s101 -O0
+R6

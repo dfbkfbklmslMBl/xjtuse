@@ -1,0 +1,81 @@
+m255
+K3
+13
+cModel Technology
+Z0 dE:\computerExercise\task8\simulation\qsim
+vtask8
+Z1 I]4NC2E6CRKIQGD^Kg1D7`3
+Z2 VkMzhfKe@cE02W4Ze1WnP01
+Z3 dE:\computerExercise\task8\simulation\qsim
+Z4 w1741695731
+Z5 8task8.vo
+Z6 Ftask8.vo
+L0 31
+Z7 OV;L;10.1d;51
+r1
+31
+Z8 !s90 -work|work|task8.vo|
+Z9 o-work work -O0
+!i10b 1
+Z10 !s100 LWEoj[1E6OR0@`F4jD:Ya1
+!s85 0
+Z11 !s108 1741695732.326000
+Z12 !s107 task8.vo|
+!s101 -O0
+vtask8_vlg_check_tst
+!i10b 1
+Z13 !s100 k?R4DJI=G[8DGK19D:Skl3
+Z14 ImXOSB7Z^7oHh2Wb>nbRc]1
+Z15 VYaTX3^0e@z[iHY^D;Yzmb3
+R3
+R4
+Z16 8task8.vwf.vt
+Z17 Ftask8.vwf.vt
+L0 71
+R7
+r1
+!s85 0
+31
+Z18 !s108 1741695732.386000
+Z19 !s107 task8.vwf.vt|
+Z20 !s90 -work|work|task8.vwf.vt|
+!s101 -O0
+R9
+vtask8_vlg_sample_tst
+!i10b 1
+Z21 !s100 YkPMlW4<FA0Xl=MKoY1WW1
+Z22 I7O2zDQk=zLgoX]a34gQhL1
+Z23 Vfn18Fi;TP5@eW^igE@lFg0
+R3
+R4
+R16
+R17
+L0 29
+R7
+r1
+!s85 0
+31
+R18
+R19
+R20
+!s101 -O0
+R9
+vtask8_vlg_vec_tst
+!i10b 1
+!s100 bagJj`iZi[OD6oJT]<azl1
+IE16od7l5?NU?FFl8So4TT3
+Z24 V]LBVcT@C<DDkXnMEWSWUN3
+R3
+R4
+R16
+R17
+Z25 L0 301
+R7
+r1
+!s85 0
+31
+R18
+R19
+R20
+!s101 -O0
+R9

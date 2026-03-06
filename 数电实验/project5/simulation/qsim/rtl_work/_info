@@ -1,0 +1,101 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\QUARTUSDATA\project5\simulation\qsim
+vfif0_
+IN9_VT_lR18d3Z_L==012a3
+Z1 VCg1RlUTBWdEeG_7:L=Cm[0
+Z2 dD:\QUARTUSDATA\project5\simulation\qsim
+w1716695344
+Z3 8fif0_.vo
+Z4 Ffif0_.vo
+L0 31
+Z5 OV;L;10.1d;51
+r1
+31
+Z6 !s90 -work|work|fif0_.vo|
+Z7 o-work work -O0
+!i10b 1
+!s100 HPk`58LXi8gd5CMPI^jzO2
+!s85 0
+!s108 1716695345.756000
+Z8 !s107 fif0_.vo|
+!s101 -O0
+vfif0__vlg_check_tst
+!i10b 1
+!s100 ;?2kbALQDe<mBk2b[6F_n1
+IDX6ddFY<QG_a0z7E6WaaZ3
+Z9 V2@DDdKG>SJI;jCeab]V?c1
+R2
+Z10 w1716695343
+Z11 8Waveform7.vwf.vt
+Z12 FWaveform7.vwf.vt
+L0 65
+R5
+r1
+!s85 0
+31
+Z13 !s108 1716695346.011000
+Z14 !s107 Waveform7.vwf.vt|
+Z15 !s90 -work|work|Waveform7.vwf.vt|
+!s101 -O0
+R7
+vfif0__vlg_sample_tst
+!i10b 1
+!s100 VgJKT=mdNLhLDUaJ`l=HZ1
+IobE[na<IC<U?k86b9WnEh1
+Z16 VF]<mbK@h:g16BOSoXSf]L1
+R2
+R10
+R11
+R12
+L0 29
+R5
+r1
+!s85 0
+31
+R13
+R14
+R15
+!s101 -O0
+R7
+vfif0__vlg_vec_tst
+!i10b 1
+!s100 Vd?4kSHgDEP;XZT4bZEGH0
+I96f^o_^aJ@?KE538oK_c]2
+Z17 VAIKI5;;MYWfB]F930anWa3
+R2
+R10
+R11
+R12
+L0 349
+R5
+r1
+!s85 0
+31
+R13
+R14
+R15
+!s101 -O0
+R7
+vmyram
+IdlP9i[5TLDMY=N7XRJ>b63
+Vk7[4`f?dJNIa^=dCD<^3;3
+R2
+w1716131702
+8D:/QUARTUSDATA/project5/myram.v
+FD:/QUARTUSDATA/project5/myram.v
+L0 39
+R5
+r1
+31
+o-vlog01compat -work work -O0
+!i10b 1
+!s100 I_b7?eM3HGZB1J5k]hXFf3
+!s85 0
+!s108 1716691975.989000
+!s107 D:/QUARTUSDATA/project5/myram.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/QUARTUSDATA/project5|D:/QUARTUSDATA/project5/myram.v|
+!s101 -O0
+!s92 -vlog01compat -work work +incdir+D:/QUARTUSDATA/project5 -O0

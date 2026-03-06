@@ -1,0 +1,16 @@
+vendor_name = ModelSim
+source_file = 1, E:/computerExercise/exercise2/exercise2.bdf
+source_file = 1, E:/computerExercise/exercise2/db/exercise2.cbx.xml
+design_name = exercise2
+instance = comp, \T1~output\, T1~output, exercise2, 1
+instance = comp, \T2~output\, T2~output, exercise2, 1
+instance = comp, \T3~output\, T3~output, exercise2, 1
+instance = comp, \T4~output\, T4~output, exercise2, 1
+instance = comp, \inst1~feeder\, inst1~feeder, exercise2, 1
+instance = comp, \RST1~input\, RST1~input, exercise2, 1
+instance = comp, \RST1~inputclkctrl\, RST1~inputclkctrl, exercise2, 1
+instance = comp, \inst2~feeder\, inst2~feeder, exercise2, 1
+instance = comp, \inst3~feeder\, inst3~feeder, exercise2, 1
+instance = comp, \CLK1~input\, CLK1~input, exercise2, 1
+instance = comp, \inst4~clkctrl\, inst4~clkctrl, exercise2, 1
+instance = comp, \inst7~0\, inst7~0, exercise2, 1

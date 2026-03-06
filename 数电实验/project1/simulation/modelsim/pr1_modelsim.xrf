@@ -1,0 +1,7 @@
+vendor_name = ModelSim
+source_file = 1, D:/QUARTUSDATA/project1/pr1.bdf
+source_file = 1, D:/QUARTUSDATA/project1/db/pr1.cbx.xml
+design_name = pr1
+instance = comp, \pin_name4~output\, pin_name4~output, pr1, 1
+instance = comp, \pin_name1~input\, pin_name1~input, pr1, 1
+instance = comp, \pin_name2~input\, pin_name2~input, pr1, 1

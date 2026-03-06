@@ -1,0 +1,155 @@
+module LED_Control (
+    input wire clk,           // 系统时钟
+    input wire rst_n,         // 复位信号，低电平有效
+    input wire button1,       // 按键1，控制LED开启/关闭
+    input wire button2,       // 按键2，控制LED闪烁图案
+    input wire button3,       // 按键3，启动倒计时
+    input wire button4,       // 按键4，复位系统
+    output reg led            // LED输出
+);
+
+    // 状态编码
+    typedef enum reg [2:0] {
+        OFF = 3'b000,         // LED 关闭状态
+        ON = 3'b001,          // LED 常亮状态
+        BLINK_SLOW = 3'b010,  // LED 慢速闪烁状态
+        BLINK_FAST = 3'b011,  // LED 快速闪烁状态
+        DOUBLE_BLINK = 3'b100,// LED 双闪烁状态
+        TIMING = 3'b101       // LED 倒计时状态
+    } state_t;
+
+    state_t current_state, next_state;
+
+    reg [23:0] counter;       // LED闪烁计数器
+    reg [31:0] timer;         // 倒计时计数器
+    wire button1_debounced, button2_debounced, button3_debounced, button4_debounced;
+
+    // 按键去抖动
+    reg [3:0] button1_sync, button2_sync, button3_sync, button4_sync;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            button1_sync <= 4'b0000;
+            button2_sync <= 4'b0000;
+            button3_sync <= 4'b0000;
+            button4_sync <= 4'b0000;
+        end else begin
+            button1_sync <= {button1_sync[2:0], button1};
+            button2_sync <= {button2_sync[2:0], button2};
+            button3_sync <= {button3_sync[2:0], button3};
+            button4_sync <= {button4_sync[2:0], button4};
+        end
+    end
+    assign button1_debounced = &button1_sync;
+    assign button2_debounced = &button2_sync;
+    assign button3_debounced = &button3_sync;
+    assign button4_debounced = &button4_sync;
+
+    // 状态机
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
+            current_state <= OFF;
+        else
+            current_state <= next_state;
+    end
+
+    always @(*) begin
+        case (current_state)
+            OFF: begin
+                if (button1_debounced)
+                    next_state = ON;
+                else
+                    next_state = OFF;
+            end
+            ON: begin
+                if (button1_debounced)
+                    next_state = OFF;
+                else if (button2_debounced)
+                    next_state = BLINK_SLOW;
+                else if (button3_debounced)
+                    next_state = TIMING;
+                else
+                    next_state = ON;
+            end
+            BLINK_SLOW: begin
+                if (button1_debounced)
+                    next_state = OFF;
+                else if (button2_debounced)
+                    next_state = BLINK_FAST;
+                else if (button3_debounced)
+                    next_state = TIMING;
+                else
+                    next_state = BLINK_SLOW;
+            end
+            BLINK_FAST: begin
+                if (button1_debounced)
+                    next_state = OFF;
+                else if (button2_debounced)
+                    next_state = DOUBLE_BLINK;
+                else if (button3_debounced)
+                    next_state = TIMING;
+                else
+                    next_state = BLINK_FAST;
+            end
+            DOUBLE_BLINK: begin
+                if (button1_debounced)
+                    next_state = OFF;
+                else if (button2_debounced)
+                    next_state = OFF;
+                else if (button3_debounced)
+                    next_state = TIMING;
+                else
+                    next_state = DOUBLE_BLINK;
+            end
+            TIMING: begin
+                if (button1_debounced)
+                    next_state = OFF;
+                else if (timer == 0)
+                    next_state = OFF;
+                else
+                    next_state = TIMING;
+            end
+            default: next_state = OFF;
+        endcase
+    end
+
+    // LED控制逻辑
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            counter <= 24'b0;
+            led <= 1'b0;
+        end else begin
+            case (current_state)
+                OFF: led <= 1'b0;
+                ON: led <= 1'b1;
+                BLINK_SLOW: begin
+                    counter <= counter + 1;
+                    led <= counter[23];
+                end
+                BLINK_FAST: begin
+                    counter <= counter + 1;
+                    led <= counter[21];
+                end
+                DOUBLE_BLINK: begin
+                    counter <= counter + 1;
+                    led <= counter[21] & counter[22];
+                end
+                TIMING: begin
+                    if (timer > 0)
+                        timer <= timer - 1;
+                    else
+                        led <= 1'b0;
+                end
+                default: led <= 1'b0;
+            endcase
+        end
+    end
+
+    // 倒计时初始化
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
+            timer <= 32'd10000000; // 例如10秒的倒计时
+        else if (button3_debounced)
+            timer <= 32'd10000000; // 重新启动倒计时
+    end
+
+endmodule

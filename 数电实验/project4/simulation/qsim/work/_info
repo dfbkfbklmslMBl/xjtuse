@@ -1,0 +1,81 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\QUARTUSDATA\project4\simulation\qsim
+vfifo_controller
+Z1 !s100 8aHok[^ZK=XEdaZBIEYiA1
+Z2 IQh:]I;[8SiNHQZR5[<RUg3
+Z3 VJT2cL8<X4Hn20c`XmTfdR1
+Z4 dD:\QUARTUSDATA\project4\simulation\qsim
+Z5 w1716091270
+Z6 8fifo_controller.vo
+Z7 Ffifo_controller.vo
+L0 31
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -work|work|fifo_controller.vo|
+Z10 o-work work -O0
+!i10b 1
+!s85 0
+Z11 !s108 1716091270.957000
+Z12 !s107 fifo_controller.vo|
+!s101 -O0
+vfifo_controller_vlg_check_tst
+!i10b 1
+Z13 !s100 Jf8b8B_8@mfK^h@ng4[>81
+Z14 IM?IGc:[Ta;oLHi[7K=Ee=0
+Z15 V=ZFJRk0WZdj4zc_eYLB:T0
+R4
+Z16 w1716091269
+Z17 8Waveform3.vwf.vt
+Z18 FWaveform3.vwf.vt
+L0 65
+R8
+r1
+!s85 0
+31
+Z19 !s108 1716091271.017000
+Z20 !s107 Waveform3.vwf.vt|
+Z21 !s90 -work|work|Waveform3.vwf.vt|
+!s101 -O0
+R10
+vfifo_controller_vlg_sample_tst
+!i10b 1
+Z22 !s100 :kdJAMT590B@CD=:Vk28S1
+Z23 IEl>@NMB=X]@?b30kg5_k60
+Z24 Vf2OGDCTlln@i_1bQe1EAj1
+R4
+R16
+R17
+R18
+L0 29
+R8
+r1
+!s85 0
+31
+R19
+R20
+R21
+!s101 -O0
+R10
+vfifo_controller_vlg_vec_tst
+!i10b 1
+Z25 !s100 j4Q=388cPG0z8NAPAWUEC3
+Z26 IodHbYTU;O=R0I]kTQ:^D>1
+Z27 V1SCKfH^G_oP[KT1o_PM[L1
+R4
+R16
+R17
+R18
+Z28 L0 339
+R8
+r1
+!s85 0
+31
+R19
+R20
+R21
+!s101 -O0
+R10

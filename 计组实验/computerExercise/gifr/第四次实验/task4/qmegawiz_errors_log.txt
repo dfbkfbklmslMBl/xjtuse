@@ -1,0 +1,9 @@
+
+
+C:/Users/xjtuse/Desktop/¦Ì¨²??¡ä?¨º¦Ì?¨¦/task4/lpm_counter1.vhd
+
+Nov 24 08AM:26:08>: File C:/Users/xjtuse/Desktop/¦Ì¨²??¡ä?¨º¦Ì?¨¦/task4/lpm_counter1.cnxerr could not be opened
+
+C:/Users/xjtuse/Desktop/¦Ì¨²??¡ä?¨º¦Ì?¨¦/task4/lpm_counter1.vhd
+
+Nov 24 08AM:26:15>: File C:/Users/xjtuse/Desktop/¦Ì¨²??¡ä?¨º¦Ì?¨¦/task4/lpm_counter1.cnxerr could not be opened

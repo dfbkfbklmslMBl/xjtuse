@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dE:\computerExercise\exercise2.2\simulation\qsim
+vexercise_RAM
+Z1 !s100 B[QnlDJlzBT0deWN8V8`N0
+Z2 I2]?_8RH30EkD3`9@Za;OW3
+Z3 VOPbI?dja8Q60P0Z;Mdg3b0
+Z4 dE:\computerExercise\exercise2.2\simulation\qsim
+Z5 w1729080872
+Z6 8exercise_RAM.vo
+Z7 Fexercise_RAM.vo
+L0 31
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -work|work|exercise_RAM.vo|
+Z10 o-work work -O0
+Z11 nexercise_@r@a@m
+!i10b 1
+!s85 0
+Z12 !s108 1729080872.846000
+Z13 !s107 exercise_RAM.vo|
+!s101 -O0
+vexercise_RAM_vlg_check_tst
+!i10b 1
+Z14 !s100 N66GEKQ55Nomh4aGkbh7N1
+Z15 IHC?oU0GnYX@6;F=a4a[An3
+Z16 VIkUZhcZ?EGMPhz1oVG[e@2
+R4
+Z17 w1729080871
+Z18 8Waveform23.vwf.vt
+Z19 FWaveform23.vwf.vt
+L0 63
+R8
+r1
+!s85 0
+31
+Z20 !s108 1729080872.925000
+Z21 !s107 Waveform23.vwf.vt|
+Z22 !s90 -work|work|Waveform23.vwf.vt|
+!s101 -O0
+R10
+Z23 nexercise_@r@a@m_vlg_check_tst
+vexercise_RAM_vlg_sample_tst
+!i10b 1
+Z24 !s100 d5>5o2[flXQXH:fba^JhG0
+Z25 IHAzoGJ>jJRg@K7?al6FB=2
+Z26 V=d5HbB`e3@RADkCD9LX:n1
+R4
+R17
+R18
+R19
+L0 29
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z27 nexercise_@r@a@m_vlg_sample_tst
+vexercise_RAM_vlg_vec_tst
+!i10b 1
+!s100 ?_bB7dEV>DX1EOSi1S<=80
+I3S0FkeKGgg;[fRQa6m9541
+Z28 V4R9oo_R4a_H4j=Xzg3bCd0
+R4
+R17
+R18
+R19
+Z29 L0 283
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z30 nexercise_@r@a@m_vlg_vec_tst

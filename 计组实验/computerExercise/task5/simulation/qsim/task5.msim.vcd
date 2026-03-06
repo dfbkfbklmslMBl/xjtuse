@@ -1,0 +1,815 @@
+$comment
+	File created using the following command:
+		vcd file task5.msim.vcd -direction
+$end
+$date
+	Tue Mar 11 19:45:09 2025
+$end
+$version
+	ModelSim Version 10.1d
+$end
+$timescale
+	1ps
+$end
+$scope module task5_vlg_vec_tst $end
+$var reg 1 ! ar_alk $end
+$var reg 8 " data [7:0] $end
+$var reg 1 # input_b $end
+$var reg 1 $ load_pc $end
+$var reg 1 % pc_b $end
+$var reg 1 & pc_clk $end
+$var reg 1 ' rst $end
+$var wire 1 ( ar [7] $end
+$var wire 1 ) ar [6] $end
+$var wire 1 * ar [5] $end
+$var wire 1 + ar [4] $end
+$var wire 1 , ar [3] $end
+$var wire 1 - ar [2] $end
+$var wire 1 . ar [1] $end
+$var wire 1 / ar [0] $end
+$var wire 1 0 pc [7] $end
+$var wire 1 1 pc [6] $end
+$var wire 1 2 pc [5] $end
+$var wire 1 3 pc [4] $end
+$var wire 1 4 pc [3] $end
+$var wire 1 5 pc [2] $end
+$var wire 1 6 pc [1] $end
+$var wire 1 7 pc [0] $end
+$var wire 1 8 sampler $end
+$scope module i1 $end
+$var wire 1 9 gnd $end
+$var wire 1 : vcc $end
+$var wire 1 ; unknown $end
+$var tri1 1 < devclrn $end
+$var tri1 1 = devpor $end
+$var tri1 1 > devoe $end
+$var wire 1 ? pc_b~input_o $end
+$var wire 1 @ ar[7]~output_o $end
+$var wire 1 A ar[6]~output_o $end
+$var wire 1 B ar[5]~output_o $end
+$var wire 1 C ar[4]~output_o $end
+$var wire 1 D ar[3]~output_o $end
+$var wire 1 E ar[2]~output_o $end
+$var wire 1 F ar[1]~output_o $end
+$var wire 1 G ar[0]~output_o $end
+$var wire 1 H pc[7]~output_o $end
+$var wire 1 I pc[6]~output_o $end
+$var wire 1 J pc[5]~output_o $end
+$var wire 1 K pc[4]~output_o $end
+$var wire 1 L pc[3]~output_o $end
+$var wire 1 M pc[2]~output_o $end
+$var wire 1 N pc[1]~output_o $end
+$var wire 1 O pc[0]~output_o $end
+$var wire 1 P ar_alk~input_o $end
+$var wire 1 Q data[7]~input_o $end
+$var wire 1 R input_b~input_o $end
+$var wire 1 S pc_clk~input_o $end
+$var wire 1 T inst|LPM_COUNTER_component|auto_generated|counter_comb_bita0~combout $end
+$var wire 1 U data[0]~input_o $end
+$var wire 1 V gdfx_temp0[0]~7_combout $end
+$var wire 1 W rst~input_o $end
+$var wire 1 X load_pc~input_o $end
+$var wire 1 Y inst|LPM_COUNTER_component|auto_generated|counter_comb_bita0~COUT $end
+$var wire 1 Z inst|LPM_COUNTER_component|auto_generated|counter_comb_bita1~combout $end
+$var wire 1 [ data[1]~input_o $end
+$var wire 1 \ gdfx_temp0[1]~6_combout $end
+$var wire 1 ] inst|LPM_COUNTER_component|auto_generated|counter_comb_bita1~COUT $end
+$var wire 1 ^ inst|LPM_COUNTER_component|auto_generated|counter_comb_bita2~combout $end
+$var wire 1 _ data[2]~input_o $end
+$var wire 1 ` gdfx_temp0[2]~5_combout $end
+$var wire 1 a inst|LPM_COUNTER_component|auto_generated|counter_comb_bita2~COUT $end
+$var wire 1 b inst|LPM_COUNTER_component|auto_generated|counter_comb_bita3~combout $end
+$var wire 1 c data[3]~input_o $end
+$var wire 1 d gdfx_temp0[3]~4_combout $end
+$var wire 1 e inst|LPM_COUNTER_component|auto_generated|counter_comb_bita3~COUT $end
+$var wire 1 f inst|LPM_COUNTER_component|auto_generated|counter_comb_bita4~combout $end
+$var wire 1 g data[4]~input_o $end
+$var wire 1 h gdfx_temp0[4]~3_combout $end
+$var wire 1 i inst|LPM_COUNTER_component|auto_generated|counter_comb_bita4~COUT $end
+$var wire 1 j inst|LPM_COUNTER_component|auto_generated|counter_comb_bita5~combout $end
+$var wire 1 k data[5]~input_o $end
+$var wire 1 l gdfx_temp0[5]~2_combout $end
+$var wire 1 m inst|LPM_COUNTER_component|auto_generated|counter_comb_bita5~COUT $end
+$var wire 1 n inst|LPM_COUNTER_component|auto_generated|counter_comb_bita6~combout $end
+$var wire 1 o data[6]~input_o $end
+$var wire 1 p gdfx_temp0[6]~1_combout $end
+$var wire 1 q inst|LPM_COUNTER_component|auto_generated|counter_comb_bita6~COUT $end
+$var wire 1 r inst|LPM_COUNTER_component|auto_generated|counter_comb_bita7~combout $end
+$var wire 1 s gdfx_temp0[7]~0_combout $end
+$var wire 1 t inst1|latches [7] $end
+$var wire 1 u inst1|latches [6] $end
+$var wire 1 v inst1|latches [5] $end
+$var wire 1 w inst1|latches [4] $end
+$var wire 1 x inst1|latches [3] $end
+$var wire 1 y inst1|latches [2] $end
+$var wire 1 z inst1|latches [1] $end
+$var wire 1 { inst1|latches [0] $end
+$var wire 1 | inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [7] $end
+$var wire 1 } inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [6] $end
+$var wire 1 ~ inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [5] $end
+$var wire 1 !! inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [4] $end
+$var wire 1 "! inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [3] $end
+$var wire 1 #! inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [2] $end
+$var wire 1 $! inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [1] $end
+$var wire 1 %! inst|LPM_COUNTER_component|auto_generated|counter_reg_bit [0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+b1010101 "
+0#
+0$
+1%
+0&
+0'
+x/
+x.
+x-
+x,
+x+
+x*
+x)
+x(
+07
+06
+05
+04
+03
+02
+01
+00
+x8
+09
+1:
+x;
+1<
+1=
+1>
+1?
+x@
+xA
+xB
+xC
+xD
+xE
+xF
+xG
+0H
+0I
+0J
+0K
+0L
+0M
+0N
+0O
+0P
+0Q
+0R
+0S
+1T
+1U
+0V
+0W
+0X
+0Y
+0Z
+0[
+0\
+1]
+0^
+1_
+0`
+0a
+0b
+0c
+0d
+1e
+0f
+1g
+0h
+0i
+0j
+0k
+0l
+1m
+0n
+1o
+0p
+0q
+0r
+0s
+x{
+xz
+xy
+xx
+xw
+xv
+xu
+xt
+0%!
+0$!
+0#!
+0"!
+0!!
+0~
+0}
+0|
+$end
+#10000
+1$
+1X
+08
+#20000
+1&
+1S
+18
+#40000
+0&
+0S
+08
+#60000
+1#
+1&
+1R
+1S
+18
+1p
+1h
+1`
+1V
+#80000
+0&
+0S
+08
+#100000
+1&
+1S
+18
+1}
+1!!
+1#!
+1%!
+1n
+1f
+1^
+1Y
+0T
+1I
+1K
+1M
+1O
+11
+13
+15
+17
+1Z
+#120000
+0&
+0S
+08
+#140000
+1&
+1S
+18
+#160000
+0&
+0S
+08
+#180000
+0%
+1&
+0?
+1S
+18
+#200000
+0&
+0S
+08
+#220000
+1&
+1S
+18
+#240000
+0&
+0S
+08
+#250000
+0$
+0X
+18
+#260000
+1&
+1S
+08
+1$!
+0%!
+0]
+0Z
+0Y
+1T
+1N
+0O
+16
+07
+1a
+0^
+1]
+1Z
+1b
+0a
+1^
+0b
+#280000
+0#
+0&
+0R
+0S
+18
+1\
+0V
+#300000
+1&
+1S
+08
+1%!
+1V
+1Y
+0T
+1O
+17
+0]
+0Z
+1a
+0^
+1b
+#320000
+0&
+0S
+18
+#340000
+1&
+1S
+08
+1"!
+0#!
+0$!
+0%!
+1d
+0e
+0b
+0`
+0a
+1^
+0\
+1]
+1Z
+0V
+0Y
+1T
+1L
+0M
+0N
+0O
+14
+05
+06
+07
+1i
+0f
+1e
+1b
+0^
+0Z
+1j
+0i
+1f
+0j
+#360000
+0&
+0S
+18
+#380000
+1&
+1S
+08
+1%!
+1V
+1Y
+0T
+1O
+17
+1Z
+#400000
+b10101 "
+b101 "
+b1 "
+b0 "
+0&
+0U
+0_
+0g
+0o
+0S
+18
+#420000
+1&
+1S
+08
+1$!
+0%!
+1\
+0]
+0Z
+0V
+0Y
+1T
+1N
+0O
+16
+07
+1^
+1]
+1Z
+0^
+#440000
+0&
+0S
+18
+#460000
+1&
+1S
+08
+1%!
+1V
+1Y
+0T
+1O
+17
+0]
+0Z
+1^
+#480000
+0&
+0S
+18
+#500000
+1%
+1&
+1?
+1S
+08
+1#!
+0$!
+0%!
+1`
+1a
+0^
+0\
+1]
+1Z
+0V
+0Y
+1T
+1M
+0N
+0O
+15
+06
+07
+0e
+0b
+0a
+1^
+0Z
+1i
+0f
+1e
+1b
+1j
+0i
+1f
+0j
+#520000
+0&
+0S
+18
+#540000
+1&
+1S
+08
+1%!
+1V
+1Y
+0T
+1O
+17
+1Z
+#560000
+0&
+0S
+18
+#580000
+1&
+1S
+08
+1$!
+0%!
+1\
+0]
+0Z
+0V
+0Y
+1T
+1N
+0O
+16
+07
+1a
+0^
+1]
+1Z
+0e
+0b
+0a
+1^
+1i
+0f
+1e
+1b
+1j
+0i
+1f
+0j
+#600000
+0&
+0S
+18
+#620000
+1&
+1S
+08
+1%!
+1V
+1Y
+0T
+1O
+17
+0]
+0Z
+1a
+0^
+0e
+0b
+1i
+0f
+1j
+#640000
+0&
+0S
+18
+#660000
+1&
+1S
+08
+1~
+0!!
+0"!
+0#!
+0$!
+0%!
+1l
+0m
+0j
+0h
+0i
+1f
+0d
+1e
+1b
+0`
+0a
+1^
+0\
+1]
+1Z
+0V
+0Y
+1T
+1J
+0K
+0L
+0M
+0N
+0O
+12
+03
+04
+05
+06
+07
+1q
+0n
+1m
+1j
+0f
+0b
+0^
+0Z
+1r
+0q
+1n
+0r
+#680000
+0&
+0S
+18
+#700000
+1&
+1S
+08
+1%!
+1V
+1Y
+0T
+1O
+17
+1Z
+#720000
+0&
+0S
+18
+#740000
+1&
+1S
+08
+1$!
+0%!
+1\
+0]
+0Z
+0V
+0Y
+1T
+1N
+0O
+16
+07
+1^
+1]
+1Z
+0^
+#760000
+0&
+0S
+18
+#780000
+1&
+1S
+08
+1%!
+1V
+1Y
+0T
+1O
+17
+0]
+0Z
+1^
+#800000
+0&
+0S
+18
+#820000
+1&
+1S
+08
+1#!
+0$!
+0%!
+1`
+1a
+0^
+0\
+1]
+1Z
+0V
+0Y
+1T
+1M
+0N
+0O
+15
+06
+07
+1b
+0a
+1^
+0Z
+0b
+#840000
+0&
+0S
+18
+#860000
+1&
+1S
+08
+1%!
+1V
+1Y
+0T
+1O
+17
+1Z
+#880000
+0&
+0S
+18
+#890000
+0%
+0?
+08
+#900000
+1&
+1S
+18
+1$!
+0%!
+1\
+0]
+0Z
+0V
+0Y
+1T
+1N
+0O
+16
+07
+1a
+0^
+1]
+1Z
+1b
+0a
+1^
+0b
+#920000
+0&
+0S
+08
+#940000
+1&
+1S
+18
+1%!
+1V
+1Y
+0T
+1O
+17
+0]
+0Z
+1a
+0^
+1b
+#960000
+0&
+0S
+08
+#980000
+1&
+1S
+18
+1"!
+0#!
+0$!
+0%!
+1d
+0e
+0b
+0`
+0a
+1^
+0\
+1]
+1Z
+0V
+0Y
+1T
+1L
+0M
+0N
+0O
+14
+05
+06
+07
+1f
+1e
+1b
+0^
+0Z
+0f
+#1000000

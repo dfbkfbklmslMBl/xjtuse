@@ -1,0 +1,81 @@
+m255
+K3
+13
+cModel Technology
+Z0 dE:\computerExercise\task7\simulation\qsim
+vtask7
+Z1 IA?Q@LkWk4C>K1N7A?fAX?3
+Z2 VE[^[RI`T3Tm5K6B:]2Feh1
+Z3 dE:\computerExercise\task7\simulation\qsim
+Z4 w1741695563
+Z5 8task7.vo
+Z6 Ftask7.vo
+L0 31
+Z7 OV;L;10.1d;51
+r1
+31
+Z8 o-work work -O0
+!i10b 1
+Z9 !s100 OE_bnM5=Ll^azR[Z15^^[0
+!s85 0
+Z10 !s108 1741695563.750000
+Z11 !s107 task7.vo|
+Z12 !s90 -work|work|task7.vo|
+!s101 -O0
+vtask7_vlg_check_tst
+!i10b 1
+!s100 e1[no3jlDZgCS3D@EO1>01
+I]LIHf48jkYVcH4`2_Z_j23
+V7Ol;Y6kSBjYYd1H`=ZP6U1
+R3
+Z13 w1741695562
+Z14 8task7.vwf.vt
+Z15 Ftask7.vwf.vt
+L0 63
+R7
+r1
+!s85 0
+31
+Z16 !s108 1741695563.808000
+Z17 !s107 task7.vwf.vt|
+Z18 !s90 -work|work|task7.vwf.vt|
+!s101 -O0
+R8
+vtask7_vlg_sample_tst
+!i10b 1
+!s100 2g8<TV@CnaWJ1SEg9d;z91
+IaFz>JlbJm;@3MKW;MRiRM2
+V:SahjReH1ISmk2zPZ;NYC1
+R3
+R13
+R14
+R15
+L0 29
+R7
+r1
+!s85 0
+31
+R16
+R17
+R18
+!s101 -O0
+R8
+vtask7_vlg_vec_tst
+!i10b 1
+!s100 J4@`ZjU0[D6D]5Ze_@e0D1
+IDa=h@:mV[:cSf7US5oNCH0
+VlIZb;n=gU4Ij[cQ9>zLiV0
+R3
+R13
+R14
+R15
+L0 247
+R7
+r1
+!s85 0
+31
+R16
+R17
+R18
+!s101 -O0
+R8

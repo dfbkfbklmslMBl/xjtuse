@@ -1,0 +1,16 @@
+Fitter Status : Failed - Tue Mar 18 09:57:16 2025
+Quartus II 64-Bit Version : 13.1.0 Build 162 10/23/2013 SJ Full Version
+Revision Name : MCU8951
+Top-level Entity Name : MCU8951
+Family : Cyclone IV E
+Device : EP4CE6E22C8
+Timing Models : Final
+Total logic elements : 2,797 / 6,272 ( 45 % )
+    Total combinational functions : 2,463 / 6,272 ( 39 % )
+    Dedicated logic registers : 1,342 / 6,272 ( 21 % )
+Total registers : 1342
+Total pins : 55 / 92 ( 60 % )
+Total virtual pins : 0
+Total memory bits : 329,728 / 276,480 ( 119 % )
+Embedded Multiplier 9-bit elements : 0 / 30 ( 0 % )
+Total PLLs : 1 / 2 ( 50 % )

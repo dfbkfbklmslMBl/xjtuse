@@ -1,0 +1,18 @@
+Analysis & Synthesis Status : Successful - Sat Jun 01 22:22:01 2024
+Quartus II 64-Bit Version : 13.1.0 Build 162 10/23/2013 SJ Full Version
+Revision Name : countdown
+Top-level Entity Name : countdown
+Family : Cyclone IV GX
+Total logic elements : 160
+    Total combinational functions : 159
+    Dedicated logic registers : 95
+Total registers : 95
+Total pins : 14
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total GXB Receiver Channel PCS : 0
+Total GXB Receiver Channel PMA : 0
+Total GXB Transmitter Channel PCS : 0
+Total GXB Transmitter Channel PMA : 0
+Total PLLs : 0

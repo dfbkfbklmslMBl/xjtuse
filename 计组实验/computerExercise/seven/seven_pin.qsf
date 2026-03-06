@@ -1,0 +1,56 @@
+# 时钟和复位引脚
+set_location_assignment PIN_23 -to clk_in
+set_location_assignment PIN_24 -to rst_n
+
+# 游戏按钮引脚
+set_location_assignment PIN_25 -to game_buttons[0]  # 开始/重新开始按钮
+set_location_assignment PIN_26 -to game_buttons[1]  # 左移按钮
+set_location_assignment PIN_27 -to game_buttons[2]  # 右移按钮
+set_location_assignment PIN_28 -to game_buttons[3]  # 暂停按钮
+
+# LED显示引脚
+set_location_assignment PIN_1 -to led_display[0]
+set_location_assignment PIN_2 -to led_display[1]
+set_location_assignment PIN_3 -to led_display[2]
+set_location_assignment PIN_4 -to led_display[3]
+set_location_assignment PIN_5 -to led_display[4]
+set_location_assignment PIN_6 -to led_display[5]
+set_location_assignment PIN_7 -to led_display[6]
+set_location_assignment PIN_8 -to led_display[7]
+
+# 游戏分数显示引脚
+set_location_assignment PIN_9 -to game_score[0]
+set_location_assignment PIN_10 -to game_score[1]
+set_location_assignment PIN_11 -to game_score[2]
+set_location_assignment PIN_12 -to game_score[3]
+set_location_assignment PIN_13 -to game_score[4]
+set_location_assignment PIN_14 -to game_score[5]
+set_location_assignment PIN_15 -to game_score[6]
+set_location_assignment PIN_16 -to game_score[7]
+
+# IO标准设置
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk_in
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to rst_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to game_buttons[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to game_buttons[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to game_buttons[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to game_buttons[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_display[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_display[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_display[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_display[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_display[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_display[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_display[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_display[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to game_score[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to game_score[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to game_score[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to game_score[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to game_score[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to game_score[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to game_score[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to game_score[7]
+
+# 时钟约束
+set_instance_assignment -name GLOBAL_SIGNAL GLOBAL_CLOCK -to clk_in 

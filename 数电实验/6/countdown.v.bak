@@ -1,0 +1,354 @@
+`timescale 1ms/1us
+
+// 功能：右上按钮：短按一下增加时间，长按连续增加时间
+// 右下按钮：减少时间
+// 中间按钮：重置电路
+// 左上-开始计时
+// 计时结束以后，长闪4次，回到设置时间
+// 开始计时以后，再按左上按钮，可以暂停/继续(短闪一次)
+// 开始计时以后，按增加或减少时间的按钮，可以停止，重新设置时间(短闪两次)
+// 灯闪动：调时间，灯不闪：计时
+// 按左下：秒表，秒表按左上可以暂停计时，按加/减可以停止
+
+// 生成指定频率的时钟信号（4路输出）
+module tick_generator
+#(parameter CPS = 100,
+  parameter TPS = 20
+)
+(
+    input clk, rst,
+    output reg[3:0] ticks
+    );
+    reg[31:0] counter;
+    reg[3:0] current;
+    reg high;
+    
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            ticks <= 4'b0000;
+            counter <= 0;
+            current <= 4'b0001;
+            high <= 0;
+        end else if (counter == CPS / TPS / 8 - 1) begin
+            counter <= 0;
+            high <= ~high;
+            if (~high)
+                ticks <= current;
+            else begin
+                ticks <= 4'b0000;
+                current <= {current[2:0], current[3]};
+            end
+        end else begin
+            counter <= counter + 1;
+        end
+    end
+endmodule
+
+// 检测按键按下的上升沿
+module sw_press_detect(
+    input tick, rst,
+    input sw,
+    output reg pressed
+    );
+    reg last;
+    always @(posedge tick or posedge rst) begin
+        if (rst) begin
+            last <= 0;
+        end else begin
+            pressed <= !last && sw;
+            last <= sw;
+        end
+    end
+    
+endmodule
+
+// 检测按键持续按下40tick(2s)
+// 每5tick(0.25s)输出一次脉冲信号
+module sw_longpress_detect(
+    input tick, rst,
+    input sw,
+    output reg pressed
+    );
+    reg[7:0] pressed_time;
+    reg[3:0] output_counter;
+    always @(posedge tick or posedge rst) begin
+        if (rst) begin // 没有按键，或者重置
+            pressed_time <= 0;
+            output_counter <= 4;
+            pressed <=0;
+        end else begin
+            if (!sw) begin
+                pressed_time <= 0;
+                output_counter <= 4;
+                pressed <=0;
+            end else if (pressed_time == 40) begin
+                if (output_counter == 4) begin
+                    pressed <= 1;
+                    output_counter <= 0;
+                end else begin
+                    pressed <= 0;
+                    output_counter <= output_counter + 1;
+                end
+            end else begin
+                pressed_time <= pressed_time + 1;
+            end
+        end
+    end
+    
+endmodule
+
+// 主模块
+module countdown
+#(parameter CPS = 100_000_000) // 100MHz
+(
+    input clk,
+    output[7:0] led_out,
+    input[4:0] sw_in
+    );
+    
+    localparam ST_SETTIME = 3'd0;
+    localparam ST_COUNT = 3'd1;
+    localparam ST_BLINK = 3'd2;
+    
+    reg[2:0] state;
+//    initial state <= ST_SETTIME;
+    
+    wire[4:0] sw_high;
+    assign sw_high = ~sw_in; // high level for pressed
+    
+    wire sw_increase;
+    assign sw_increase = sw_high[2]; // 右上
+    wire sw_start;
+    assign sw_start = sw_high[0]; // 左上
+    wire sw_stopwatch;
+    assign sw_stopwatch = sw_high[1]; // 左下
+    wire sw_rst;
+    assign sw_rst = sw_high[4]; // 中间 
+    wire sw_decrease;
+    assign sw_decrease = sw_high[3]; // 右下
+    
+    // ST_SETTIME
+    reg[7:0] settime; // 设定的倒计时时间
+    reg[3:0] settime_blink; // 倒计时闪动计时器 (第3位为显示/不显示，即8刻0.4秒切换一次)
+    // ST_COUNT
+    reg[7:0] currtime; // 现在正在倒计时到多少秒了
+    reg[7:0] currtick; // 倒计时一秒内还有多少tick
+    reg paused;
+    reg countup; // countup ？ 秒表 ：计时器
+    // ST_BLINK
+    reg[7:0] blink_a; // 闪烁的两个图案(亮和暗)
+    reg[7:0] blink_b;
+    reg blink_state; // 当前是亮还是暗
+    reg[7:0] blink_settick; // 闪烁亮或暗的时间
+    reg[7:0] blink_currtime; // 闪烁总共的次数
+    reg[7:0] blink_currtick; // 当前还剩多长时间转变状态
+    reg[2:0] blink_nextstate; // 下一个状态
+    
+    reg[7:0] display; // LED显示内容
+    assign led_out = ~display;
+    //assign led_out[1:0] = ~state[1:0];
+    
+    
+    wire[3:0] ticks;
+    tick_generator #(.CPS(CPS), .TPS(20)) tg1(.clk(clk), .rst(sw_rst), .ticks(ticks));
+    // 产生四路时钟信号，每秒20个周期，四路依次触发
+    
+    // 时钟0，检测按键输入
+    wire pressed_start;
+    sw_press_detect swpd_start(.tick(ticks[0]), .rst(sw_rst), .sw(sw_start), .pressed(pressed_start));
+    wire pressed_stopwatch;
+    sw_press_detect swpd_stopwatch(.tick(ticks[0]), .rst(sw_rst), .sw(sw_stopwatch), .pressed(pressed_stopwatch));
+    wire pressed_increase;
+    sw_press_detect swpd_increase(.tick(ticks[0]), .rst(sw_rst), .sw(sw_increase), .pressed(pressed_increase));
+    wire longpressed_increase;
+    sw_longpress_detect swlpd_increase(.tick(ticks[0]), .rst(sw_rst), .sw(sw_increase), .pressed(longpressed_increase));
+    wire pressed_decrease;
+    sw_press_detect swpd_decrease(.tick(ticks[0]), .rst(sw_rst), .sw(sw_decrease), .pressed(pressed_decrease));
+    wire longpressed_decrease;
+    sw_longpress_detect swlpd_decrease(.tick(ticks[0]), .rst(sw_rst), .sw(sw_decrease), .pressed(longpressed_decrease));
+    
+    wire tick = ticks[0] || ticks[1] || ticks[2] || ticks[3];
+    
+    ////////////
+    //assign led_out[2] = ~pressed_decrease;
+    //assign led_out[3] = ~longpressed_decrease;
+    //assign led_out[7:4] = ~display[3:0];
+    ////////////
+    /////////
+    
+    always @(posedge sw_rst or posedge tick) begin
+        // 初始化
+        if (sw_rst) begin
+            state <= ST_SETTIME;
+            settime <= 0;
+            settime_blink <= 0;
+            display <= 0;
+        end else begin
+            // 时钟1，处理按键事件，增加时间，改变状态
+            // 时钟2，设置显示
+            
+            case (state)
+                ST_SETTIME: begin
+                    if (ticks[1]) begin
+                        settime_blink <= settime_blink + 1;
+                        if (pressed_increase || longpressed_increase) begin // 按按钮时间加1
+                            if (settime == 'hff) begin
+                                blink_a <= 'hff;
+                                blink_b <= 'h00;
+                                blink_state <= 0;
+                                blink_settick <= 2;
+                                blink_currtime <= 4;
+                                blink_currtick <= 2;
+                                blink_nextstate <= ST_SETTIME;
+                                state <= ST_BLINK;
+                            end else
+                                settime <= settime + 1;
+                            settime_blink <= 0;
+                        end
+                        if (pressed_decrease || longpressed_decrease) begin // 按按钮时间减1
+                            if (settime == 'h00) begin
+                                blink_a <= 'hff;
+                                blink_b <= 'h00;
+                                blink_state <= 0;
+                                blink_settick <= 2;
+                                blink_currtime <= 4;
+                                blink_currtick <= 2;
+                                blink_nextstate <= ST_SETTIME;
+                                state <= ST_BLINK;
+                            end else
+                                settime <= settime - 1;
+                            settime_blink <= 0;
+                        end
+                        if (pressed_start) begin // 开始计时
+                            currtime <= settime;
+                            currtick <= 20;
+                            countup <= 0;
+                            paused <= 0;
+                            blink_a <= 'hff;
+                            blink_b <= 'h00;
+                            blink_state <= 0;
+                            blink_settick <= 2;
+                            blink_currtime <= 2;
+                            blink_currtick <= 2;
+                            blink_nextstate <= ST_COUNT;
+                            state <= ST_BLINK;
+                        end
+                        if (pressed_stopwatch) begin // 开始秒表
+                            currtime <= 0;
+                            currtick <= 20;
+                            countup <= 1;
+                            paused <= 0;
+                            blink_a <= 'hff;
+                            blink_b <= 'h00;
+                            blink_state <= 0;
+                            blink_settick <= 2;
+                            blink_currtime <= 2;
+                            blink_currtick <= 2;
+                            blink_nextstate <= ST_COUNT;
+                            state <= ST_BLINK;
+                        end
+                    end
+                    if (ticks[2]) begin
+                        if (settime_blink[3])
+                            display <= 'h00;
+                        else
+                            display <= settime;
+                    end
+                end
+                ST_COUNT: begin
+                    if (ticks[1]) begin
+                        if (pressed_start) begin
+                            // 暂停
+                            blink_a <= 'hff;
+                            blink_b <= 'h00;
+                            blink_state <= 0;
+                            blink_settick <= 2;
+                            blink_currtime <= 2;
+                            blink_currtick <= 2;
+                            settime <= 0;
+                            blink_nextstate <= ST_COUNT;
+                            state <= ST_BLINK;
+                            paused <= !paused;
+                        end else if (pressed_increase || pressed_decrease) begin
+                            // 停止
+                            blink_a <= 'hff;
+                            blink_b <= 'h00;
+                            blink_state <= 0;
+                            blink_settick <= 2;
+                            blink_currtime <= 4;
+                            blink_currtick <= 2;
+                            if (!countup)
+                                settime <= 0;
+                            else
+                                settime <= currtime; // 获取秒表结果
+                            blink_nextstate <= ST_SETTIME;
+                            state <= ST_BLINK;
+                        end else begin
+                            if (!paused) begin
+                                if (currtick == 0) begin
+                                    if (!countup)
+                                        currtime <= currtime - 1;
+                                    else
+                                        currtime <= currtime + 1;
+                                    if (!countup)
+                                        if (currtime == 1 || currtime == 0) begin// 计时结束，闪烁几下以后，返回设置时间状态
+                                            blink_a <= 'hff;
+                                            blink_b <= 'h00;
+                                            blink_state <= 0;
+                                            blink_settick <= 4;
+                                            blink_currtime <= 8;
+                                            blink_currtick <= 4;
+                                            settime <= 0;
+                                            blink_nextstate <= ST_SETTIME;
+                                            state <= ST_BLINK;
+                                        end else
+                                            currtick <= 19;
+                                    else // 秒表没有终止条件
+                                            currtick <= 19;
+                                end else begin
+                                    currtick <= currtick - 1;
+                                end
+                            end
+                        end
+                    end
+                    if (ticks[2]) begin
+                        display <= currtime;
+                    end
+                end
+                ST_BLINK: begin
+                    if (ticks[1]) begin
+                        if (blink_currtick == 0) begin
+                            blink_currtime <= blink_currtime - 1;
+                            if (blink_currtime == 1) begin
+                                state <= blink_nextstate;
+                            end else
+                                blink_currtick <= blink_settick;
+                            blink_state <= !blink_state;
+                        end else begin
+                            blink_currtick <= blink_currtick - 1;
+                        end
+                        if (blink_state == 0)
+                            display <= blink_a;
+                        else
+                            display <= blink_b;
+                    end
+                end
+                default: begin // error
+                    blink_a <= 'haa;
+                    blink_b <= 'h55;
+                    blink_state <= 0;
+                    blink_settick <= 4;
+                    blink_currtime <= 8;
+                    blink_currtick <= 4;
+                    settime <= 0;
+                    blink_nextstate <= ST_SETTIME;
+                    state <= ST_BLINK;
+                end
+            endcase
+        end
+        
+    end
+    
+    // 时钟3，齐声歌唱，赞美万机之神
+    
+endmodule

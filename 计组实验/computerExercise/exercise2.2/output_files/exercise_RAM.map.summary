@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Wed Oct 30 19:22:37 2024
+Quartus II 64-Bit Version : 13.1.0 Build 162 10/23/2013 SJ Full Version
+Revision Name : exercise_RAM
+Top-level Entity Name : exercise_RAM
+Family : Cyclone IV E
+Total logic elements : 204
+    Total combinational functions : 179
+    Dedicated logic registers : 114
+Total registers : 114
+Total pins : 26
+Total virtual pins : 0
+Total memory bits : 2,048
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

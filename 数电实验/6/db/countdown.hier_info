@@ -1,0 +1,200 @@
+|countdown
+clk => clk.IN1
+led_out[0] <= display[0].DB_MAX_OUTPUT_PORT_TYPE
+led_out[1] <= display[1].DB_MAX_OUTPUT_PORT_TYPE
+led_out[2] <= display[2].DB_MAX_OUTPUT_PORT_TYPE
+led_out[3] <= display[3].DB_MAX_OUTPUT_PORT_TYPE
+led_out[4] <= display[4].DB_MAX_OUTPUT_PORT_TYPE
+led_out[5] <= display[5].DB_MAX_OUTPUT_PORT_TYPE
+led_out[6] <= display[6].DB_MAX_OUTPUT_PORT_TYPE
+led_out[7] <= display[7].DB_MAX_OUTPUT_PORT_TYPE
+sw_in[0] => sw_start.IN1
+sw_in[1] => sw_stopwatch.IN1
+sw_in[2] => sw_increase.IN2
+sw_in[3] => sw_decrease.IN2
+sw_in[4] => sw_rst.IN7
+
+
+|countdown|tick_generator:tg1
+clk => high.CLK
+clk => counter[0].CLK
+clk => counter[1].CLK
+clk => counter[2].CLK
+clk => counter[3].CLK
+clk => counter[4].CLK
+clk => counter[5].CLK
+clk => counter[6].CLK
+clk => counter[7].CLK
+clk => counter[8].CLK
+clk => counter[9].CLK
+clk => counter[10].CLK
+clk => counter[11].CLK
+clk => counter[12].CLK
+clk => counter[13].CLK
+clk => counter[14].CLK
+clk => counter[15].CLK
+clk => counter[16].CLK
+clk => counter[17].CLK
+clk => counter[18].CLK
+clk => counter[19].CLK
+clk => counter[20].CLK
+clk => counter[21].CLK
+clk => counter[22].CLK
+clk => counter[23].CLK
+clk => counter[24].CLK
+clk => counter[25].CLK
+clk => counter[26].CLK
+clk => counter[27].CLK
+clk => counter[28].CLK
+clk => counter[29].CLK
+clk => counter[30].CLK
+clk => counter[31].CLK
+clk => ticks[0]~reg0.CLK
+clk => ticks[1]~reg0.CLK
+clk => ticks[2]~reg0.CLK
+clk => ticks[3]~reg0.CLK
+rst => high.ACLR
+rst => counter[0].ACLR
+rst => counter[1].ACLR
+rst => counter[2].ACLR
+rst => counter[3].ACLR
+rst => counter[4].ACLR
+rst => counter[5].ACLR
+rst => counter[6].ACLR
+rst => counter[7].ACLR
+rst => counter[8].ACLR
+rst => counter[9].ACLR
+rst => counter[10].ACLR
+rst => counter[11].ACLR
+rst => counter[12].ACLR
+rst => counter[13].ACLR
+rst => counter[14].ACLR
+rst => counter[15].ACLR
+rst => counter[16].ACLR
+rst => counter[17].ACLR
+rst => counter[18].ACLR
+rst => counter[19].ACLR
+rst => counter[20].ACLR
+rst => counter[21].ACLR
+rst => counter[22].ACLR
+rst => counter[23].ACLR
+rst => counter[24].ACLR
+rst => counter[25].ACLR
+rst => counter[26].ACLR
+rst => counter[27].ACLR
+rst => counter[28].ACLR
+rst => counter[29].ACLR
+rst => counter[30].ACLR
+rst => counter[31].ACLR
+rst => ticks[0]~reg0.ACLR
+rst => ticks[1]~reg0.ACLR
+rst => ticks[2]~reg0.ACLR
+rst => ticks[3]~reg0.ACLR
+ticks[0] <= ticks[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+ticks[1] <= ticks[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+ticks[2] <= ticks[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+ticks[3] <= ticks[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countdown|sw_press_detect:swpd_start
+tick => pressed~reg0.CLK
+tick => last.CLK
+rst => pressed~reg0.ACLR
+rst => last.ACLR
+sw => pressed.IN1
+sw => last.DATAIN
+pressed <= pressed~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countdown|sw_press_detect:swpd_stopwatch
+tick => pressed~reg0.CLK
+tick => last.CLK
+rst => pressed~reg0.ACLR
+rst => last.ACLR
+sw => pressed.IN1
+sw => last.DATAIN
+pressed <= pressed~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countdown|sw_press_detect:swpd_increase
+tick => pressed~reg0.CLK
+tick => last.CLK
+rst => pressed~reg0.ACLR
+rst => last.ACLR
+sw => pressed.IN1
+sw => last.DATAIN
+pressed <= pressed~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countdown|sw_longpress_detect:swlpd_increase
+tick => pressed~reg0.CLK
+tick => pressed_time[0].CLK
+tick => pressed_time[1].CLK
+tick => pressed_time[2].CLK
+tick => pressed_time[3].CLK
+tick => pressed_time[4].CLK
+tick => pressed_time[5].CLK
+tick => pressed_time[6].CLK
+tick => pressed_time[7].CLK
+rst => pressed~reg0.ACLR
+rst => pressed_time[0].ACLR
+rst => pressed_time[1].ACLR
+rst => pressed_time[2].ACLR
+rst => pressed_time[3].ACLR
+rst => pressed_time[4].ACLR
+rst => pressed_time[5].ACLR
+rst => pressed_time[6].ACLR
+rst => pressed_time[7].ACLR
+sw => pressed_time.OUTPUTSELECT
+sw => pressed_time.OUTPUTSELECT
+sw => pressed_time.OUTPUTSELECT
+sw => pressed_time.OUTPUTSELECT
+sw => pressed_time.OUTPUTSELECT
+sw => pressed_time.OUTPUTSELECT
+sw => pressed_time.OUTPUTSELECT
+sw => pressed_time.OUTPUTSELECT
+sw => pressed.OUTPUTSELECT
+pressed <= pressed~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countdown|sw_press_detect:swpd_decrease
+tick => pressed~reg0.CLK
+tick => last.CLK
+rst => pressed~reg0.ACLR
+rst => last.ACLR
+sw => pressed.IN1
+sw => last.DATAIN
+pressed <= pressed~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|countdown|sw_longpress_detect:swlpd_decrease
+tick => pressed~reg0.CLK
+tick => pressed_time[0].CLK
+tick => pressed_time[1].CLK
+tick => pressed_time[2].CLK
+tick => pressed_time[3].CLK
+tick => pressed_time[4].CLK
+tick => pressed_time[5].CLK
+tick => pressed_time[6].CLK
+tick => pressed_time[7].CLK
+rst => pressed~reg0.ACLR
+rst => pressed_time[0].ACLR
+rst => pressed_time[1].ACLR
+rst => pressed_time[2].ACLR
+rst => pressed_time[3].ACLR
+rst => pressed_time[4].ACLR
+rst => pressed_time[5].ACLR
+rst => pressed_time[6].ACLR
+rst => pressed_time[7].ACLR
+sw => pressed_time.OUTPUTSELECT
+sw => pressed_time.OUTPUTSELECT
+sw => pressed_time.OUTPUTSELECT
+sw => pressed_time.OUTPUTSELECT
+sw => pressed_time.OUTPUTSELECT
+sw => pressed_time.OUTPUTSELECT
+sw => pressed_time.OUTPUTSELECT
+sw => pressed_time.OUTPUTSELECT
+sw => pressed.OUTPUTSELECT
+pressed <= pressed~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+

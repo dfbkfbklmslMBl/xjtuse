@@ -1,0 +1,43 @@
+# do task7.do 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module task7
+# 
+# Top level modules:
+# 	task7
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module task7_vlg_sample_tst
+# -- Compiling module task7_vlg_check_tst
+# ** Warning: task7.vwf.vt(154): (vlog-2576) [BSOB] - Bit-select into 'q_expected_prev' is out of bounds.
+# 
+# ** Warning: task7.vwf.vt(154): (vlog-2576) [BSOB] - Bit-select into 'q_prev' is out of bounds.
+# 
+# ** Warning: task7.vwf.vt(154): (vlog-2576) [BSOB] - Bit-select into 'q_expected_prev' is out of bounds.
+# 
+# ** Warning: task7.vwf.vt(155): (vlog-2576) [BSOB] - Bit-select into 'q_expected_prev' is out of bounds.
+# 
+# ** Warning: task7.vwf.vt(155): (vlog-2576) [BSOB] - Bit-select into 'last_q_exp' is out of bounds.
+# 
+# ** Warning: task7.vwf.vt(164): (vlog-2576) [BSOB] - Bit-select into 'last_q_exp' is out of bounds.
+# 
+# ** Warning: task7.vwf.vt(164): (vlog-2576) [BSOB] - Bit-select into 'q_expected_prev' is out of bounds.
+# 
+# -- Compiling module task7_vlg_vec_tst
+# 
+# Top level modules:
+# 	task7_vlg_vec_tst
+# vsim -L cycloneiii_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate -c -voptargs=\"+acc\" -t 1ps -novopt work.task7_vlg_vec_tst 
+# Loading work.task7_vlg_vec_tst
+# Loading work.task7
+# Loading cycloneiii_ver.cycloneiii_io_obuf
+# Loading cycloneiii_ver.cycloneiii_io_ibuf
+# Loading cycloneiii_ver.cycloneiii_clkctrl
+# Loading cycloneiii_ver.cycloneiii_mux41
+# Loading cycloneiii_ver.cycloneiii_ena_reg
+# Loading cycloneiii_ver.cycloneiii_lcell_comb
+# Loading altera_ver.dffeas
+# Loading work.task7_vlg_sample_tst
+# Loading work.task7_vlg_check_tst
+# Loading altera_ver.PRIM_GDFF_LOW
+# Simulation passed !
+# ** Note: $finish    : task7.vwf.vt(243)
+#    Time: 1 us  Iteration: 0  Instance: /task7_vlg_vec_tst/tb_out

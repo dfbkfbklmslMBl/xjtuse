@@ -1,0 +1,15 @@
+vendor_name = ModelSim
+source_file = 1, C:/Users/xjtuse/Desktop/TASK2/task2.bdf
+source_file = 1, C:/Users/xjtuse/Desktop/TASK2/db/TASK2.cbx.xml
+design_name = TASK2
+instance = comp, \T4~output\, T4~output, TASK2, 1
+instance = comp, \T1~output\, T1~output, TASK2, 1
+instance = comp, \T2~output\, T2~output, TASK2, 1
+instance = comp, \T3~output\, T3~output, TASK2, 1
+instance = comp, \CLK1~input\, CLK1~input, TASK2, 1
+instance = comp, \CLK1~inputclkctrl\, CLK1~inputclkctrl, TASK2, 1
+instance = comp, \inst6~0\, inst6~0, TASK2, 1
+instance = comp, \RST1~input\, RST1~input, TASK2, 1
+instance = comp, \inst1~0\, inst1~0, TASK2, 1
+instance = comp, \inst2~feeder\, inst2~feeder, TASK2, 1
+instance = comp, \inst3~feeder\, inst3~feeder, TASK2, 1

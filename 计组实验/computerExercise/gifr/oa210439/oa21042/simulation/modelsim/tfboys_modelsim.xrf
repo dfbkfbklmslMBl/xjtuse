@@ -1,0 +1,10 @@
+vendor_name = ModelSim
+source_file = 1, E:/oa21042/tfboys.bdf
+source_file = 1, E:/oa21042/db/tfboys.cbx.xml
+design_name = tfboys
+instance = comp, \RST1~I\, RST1, tfboys, 1
+instance = comp, \CLK1~I\, CLK1, tfboys, 1
+instance = comp, \T1~I\, T1, tfboys, 1
+instance = comp, \T2~I\, T2, tfboys, 1
+instance = comp, \T3~I\, T3, tfboys, 1
+instance = comp, \T4~I\, T4, tfboys, 1

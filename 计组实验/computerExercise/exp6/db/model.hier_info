@@ -1,0 +1,80 @@
+|model
+
+
+|model|LDR0_2:inst
+LDR0 <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+I1 => 74139M:inst.B
+I1 => 74139M:inst1.B
+I0 => 74139M:inst.A
+I0 => 74139M:inst1.A
+LDRI => 74139M:inst.G
+LDR1 <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+LDR2 <= inst9.DB_MAX_OUTPUT_PORT_TYPE
+R0_B <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+I3 => 74139M:inst2.B
+I2 => 74139M:inst2.A
+RS_B => 74139M:inst2.G
+RD_B => 74139M:inst1.G
+R1_B <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+R2_B <= inst11.DB_MAX_OUTPUT_PORT_TYPE
+RJ_B => inst10.IN0
+
+
+|model|LDR0_2:inst|74139M:inst
+Y3N <= 36.DB_MAX_OUTPUT_PORT_TYPE
+B => 11.IN0
+A => 8.IN0
+G => 7.IN0
+Y0N <= 33.DB_MAX_OUTPUT_PORT_TYPE
+Y1N <= 34.DB_MAX_OUTPUT_PORT_TYPE
+Y2N <= 35.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|model|LDR0_2:inst|74139M:inst2
+Y3N <= 36.DB_MAX_OUTPUT_PORT_TYPE
+B => 11.IN0
+A => 8.IN0
+G => 7.IN0
+Y0N <= 33.DB_MAX_OUTPUT_PORT_TYPE
+Y1N <= 34.DB_MAX_OUTPUT_PORT_TYPE
+Y2N <= 35.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|model|LDR0_2:inst|74139M:inst1
+Y3N <= 36.DB_MAX_OUTPUT_PORT_TYPE
+B => 11.IN0
+A => 8.IN0
+G => 7.IN0
+Y0N <= 33.DB_MAX_OUTPUT_PORT_TYPE
+Y1N <= 34.DB_MAX_OUTPUT_PORT_TYPE
+Y2N <= 35.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|model|uAreg:inst1
+q[1] <= inst1.DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+q[3] <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+q[4] <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+q[5] <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+q[6] <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+S[1] => inst1.PRESET
+S[2] => inst2.PRESET
+S[3] => inst3.PRESET
+S[4] => inst6.PRESET
+S[5] => inst5.PRESET
+S[6] => inst4.PRESET
+CLR => inst.IN0
+d[1] => inst1.DATAIN
+d[2] => inst2.DATAIN
+d[3] => inst3.DATAIN
+d[4] => inst6.DATAIN
+d[5] => inst5.DATAIN
+d[6] => inst4.DATAIN
+clk => inst1.CLK
+clk => inst3.CLK
+clk => inst6.CLK
+clk => inst5.CLK
+clk => inst4.CLK
+clk => inst2.CLK
+
+

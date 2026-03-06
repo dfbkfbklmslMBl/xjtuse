@@ -1,0 +1,466 @@
+C51 COMPILER V9.57.0.0   LEDDISPLAY                                                        03/18/2025 16:19:42 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE LEDDISPLAY
+OBJECT MODULE PLACED IN leddisplay.OBJ
+COMPILER INVOKED BY: E:\software\c51\C51\BIN\C51.EXE leddisplay.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include <reg51.h> 
+   2          #include <string.h> 
+   3          #include <stdio.h> 
+   4          #include <stdlib.h>
+   5          #define uchar unsigned char
+   6          #define unit unsigned int 
+   7          
+   8          /********************/
+   9          sbit sound=P1^3;
+  10          sbit rs = P1 ^ 0;
+  11          sbit rw = P1 ^ 1;
+  12          sbit en = P1 ^ 2;
+  13          sbit beepIO = P1 ^ 3;
+  14          
+  15          // 函数原型声明
+  16          void updateDisplay(uchar code newLines[4][20]);
+*** WARNING C258 IN LINE 16 OF leddisplay.c: 'newLines': mspace on parameter ignored
+  17          void checkGameComplete();
+  18          void showGameOverInterface();  // 新增函数声明
+  19          
+  20          // 游戏状态变量
+  21          int is_start = 0;
+  22          int score = 0;
+  23          int level = 1;
+  24          int first_select = 0xFF;
+  25          int second_select = 0xFF;
+  26          int game_map[8] = {1,1,2,2,3,3,4,4};
+  27          int shown_map[8] = {0,0,0,0,0,0,0,0};
+  28          int pairs_found = 0;
+  29          int combo = 0;  // 连续配对次数
+  30          int key_left = 100;  // 剩余按键次数（代替时间限制）
+  31          int keys[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+  32          int key = 16;
+  33          uchar m, n;
+  34          
+  35          // 添加游戏状态变量
+  36          int is_game_over = 0;  // 新增变量：标记游戏是否失败
+  37          
+  38          // 音符定义
+  39          uchar code T[49][2] = {{0, 0}, 
+  40              {0xF8, 0x8B}, {0xF8, 0xF2}, {0xF9, 0x5B}, {0xF9, 0xB7}, 
+  41              {0xFA, 0x14}, {0xFA, 0x66}, {0xFA, 0xB9}, {0xFB, 0x03}, 
+  42              {0xFB, 0x4A}, {0xFB, 0x8F}, {0xFB, 0xCF}, {0xFC, 0x0B}, 
+  43              {0xFC, 0x43}, {0xFC, 0x78}, {0xFC, 0xAB}, {0xFC, 0xDB}, 
+  44              {0xFD, 0x08}, {0xFD, 0x33}, {0xFD, 0x5B}, {0xFD, 0x81}, 
+  45              {0xFD, 0xA5}, {0xFD, 0xC7}, {0xFD, 0xE7}, {0xFE, 0x05}, 
+  46              {0xFE, 0x21}, {0xFE, 0x3C}, {0xFE, 0x55}, {0xFE, 0x6D}, 
+  47              {0xFE, 0x84}, {0xFE, 0x99}, {0xFE, 0xAD}, {0xFE, 0xC0}, 
+  48              {0xFE, 0x02}, {0xFE, 0xE3}, {0xFE, 0xF3}, {0xFF, 0x02}, 
+  49              {0xFF, 0x10}, {0xFF, 0x1D}, {0xFF, 0x2A}, {0xFF, 0x36}, 
+  50              {0xFF, 0x42}, {0xFF, 0x4C}, {0xFF, 0x56}, {0xFF, 0x60},
+  51              {0xFF, 0x69}, {0xFF, 0x71}, {0xFF, 0x79}, {0xFF, 0x81}
+  52          };
+  53          
+  54          // 音乐定义
+C51 COMPILER V9.57.0.0   LEDDISPLAY                                                        03/18/2025 16:19:42 PAGE 2   
+
+  55          uchar code startGameMusic[][2] = {
+  56              {23, 4}, {25, 4}, {27, 4}, {30, 4}, {0xFF, 0xFF}  // 上升音阶
+  57          };
+  58          
+  59          uchar code endGameMusic[][2] = {
+  60              {30, 4}, {27, 4}, {25, 4}, {23, 4}, {20, 8}, {0xFF, 0xFF}  // 下降音阶，结尾低音
+  61          };
+  62          
+  63          uchar code matchSuccessSound[][2] = {
+  64              {25, 2}, {30, 4}, {0xFF, 0xFF}  // 欢快的上升音
+  65          };
+  66          
+  67          uchar code matchFailSound[][2] = {
+  68              {20, 2}, {15, 4}, {0xFF, 0xFF}  // 低沉的下降音
+  69          };
+  70          
+  71          uchar code pressKeySound[][2] = {
+  72              {23, 1}, {0xFF, 0xFF}  // 简短的按键音
+  73          };
+  74          
+  75          // 音效定义
+  76          uchar code comboSound[][2] = {
+  77              {30, 2}, {32, 2}, {35, 4}, {0xFF, 0xFF}  // 连击音效
+  78          };
+  79          
+  80          // 基础函数
+  81          void ys(uchar i) {
+  82   1          uchar t;
+  83   1          for(;i>= 1;i--)
+  84   1              for(t=120;t>1;t--);
+  85   1      }
+  86          
+  87          void dm() {
+  88   1          P0 = 0xff;
+  89   1          rs = 0;
+  90   1          rw = 1;
+  91   1          en = 1;
+  92   1          while(P0 & 0x80);
+  93   1          en = 0;
+  94   1      }
+  95          
+  96          void ddata(uchar x, uchar DATA) {
+  97   1          dm();
+  98   1          ys(20);
+  99   1          P0 = DATA;
+ 100   1          rw = 0;
+ 101   1          rs = x;
+ 102   1          en = 1;
+ 103   1          en = 0;
+ 104   1      }
+ 105          
+ 106          void lcd1602() {
+ 107   1          rs = 1;
+ 108   1          rw = 1;
+ 109   1          en = 1;
+ 110   1          P0 = 0xff;
+ 111   1          ys(15);
+ 112   1          ddata(0, 0x38);
+ 113   1          ys(5);
+ 114   1          ddata(0, 0x38);
+ 115   1          ddata(0, 0x08);
+ 116   1          ddata(0, 0x01);
+C51 COMPILER V9.57.0.0   LEDDISPLAY                                                        03/18/2025 16:19:42 PAGE 3   
+
+ 117   1          ddata(0, 0x06);
+ 118   1          ddata(0, 0x0c);
+ 119   1      }
+ 120          
+ 121          void xianshi(uchar i, uchar j, uchar DDATA) {
+ 122   1          if(i == 1) j += 0x40;
+ 123   1          if(i == 2) j += 20;
+ 124   1          if(i == 3) j += 20 + 0x40;
+ 125   1          j += 0x80;
+ 126   1          ddata(0, j);
+ 127   1          ddata(1, DDATA);
+ 128   1      }
+ 129          
+ 130          void xianshi1(uchar y, uchar x, uchar code *str) {
+ 131   1          while(*str) {
+ 132   2              xianshi(y, x++, *str++);
+ 133   2          }
+ 134   1      }
+ 135          
+ 136          void delay_in_key(uchar z) {
+ 137   1          uchar x, y;
+ 138   1          for(x = z; x > 0; x--)
+ 139   1              for(y = 110; y > 0; y--);
+ 140   1      }
+ 141          
+ 142          uchar keyscan() {
+ 143   1          uchar row, col, i;
+ 144   1          uchar code keycode[] = {
+ 145   1              0xee, 0xde, 0xbe, 0x7e,
+ 146   1              0xed, 0xdd, 0xbd, 0x7d,
+ 147   1              0xeb, 0xdb, 0xbb, 0x7b,
+ 148   1              0xe7, 0xd7, 0xb7, 0x77
+ 149   1          };
+ 150   1          uchar k = 16;
+ 151   1          P3 = 0xf0;
+ 152   1          if((P3 & 0xf0) != 0xf0) {
+ 153   2              delay_in_key(5);
+ 154   2              if((P3 & 0xf0) != 0xf0) {
+ 155   3                  row = P3 & 0xf0;
+ 156   3                  P3 = row | 0x0f;
+ 157   3                  col = P3 & 0x0f;
+ 158   3                  for(i = 0; i < 16; i++)
+ 159   3                      if((col | row) == keycode[i]) {
+ 160   4                          k = i;
+ 161   4                          break;
+ 162   4                      }
+ 163   3                  P3 = 0xf0;
+ 164   3                  while((P3 & 0xf0) != 0xf0);
+ 165   3              }
+ 166   2          }
+ 167   1          return k;
+ 168   1      }
+ 169          
+ 170          void delay_in_music(uchar p) {
+ 171   1          uchar i, j;
+ 172   1          for(; p > 0; p--)
+ 173   1              for(i = 160; i > 0; i--)
+ 174   1                  for(j = 160; j > 0; j--);
+ 175   1      }
+ 176          
+ 177          void T0_int() interrupt 1 {
+ 178   1          beepIO = !beepIO;
+C51 COMPILER V9.57.0.0   LEDDISPLAY                                                        03/18/2025 16:19:42 PAGE 4   
+
+ 179   1          TH0 = T[m][0];
+ 180   1          TL0 = T[m][1];
+ 181   1      }
+ 182          
+ 183          void play(uchar code music[][2]) {
+*** WARNING C258 IN LINE 183 OF leddisplay.c: 'music': mspace on parameter ignored
+ 184   1          uchar i = 0;
+ 185   1          TMOD = 0x01;
+ 186   1          EA = 1;
+ 187   1          ET0 = 1;
+ 188   1          while(1) {
+ 189   2              m = music[i][0];
+ 190   2              n = music[i][1];
+ 191   2              if(m == 0x00) {
+ 192   3                  TR0 = 0;
+ 193   3                  delay_in_music(2);
+ 194   3                  i++;
+ 195   3              } else if(m == 0xFF) {
+ 196   3                  TR0 = 0;
+ 197   3                  delay_in_music(1);
+ 198   3                  break;
+ 199   3              } else {
+ 200   3                  TR0 = 1;
+ 201   3                  delay_in_music(2);
+ 202   3                  i++;
+ 203   3              }
+ 204   2          }
+ 205   1      }
+ 206          
+ 207          void shuffle_array() {
+ 208   1          int i, j, temp;
+ 209   1          for(i = 7; i > 0; i--) {
+ 210   2              j = rand() % (i + 1);
+ 211   2              temp = game_map[i];
+ 212   2              game_map[i] = game_map[j];
+ 213   2              game_map[j] = temp;
+ 214   2          }
+ 215   1      }
+ 216          
+ 217          void showStartInterface() {
+ 218   1          uchar code newLines[4][20] = {
+ 219   1              "Memory Pair Game    ",
+ 220   1              "Key11: Start Game   ",
+ 221   1              "Key43-44: Rules    ",
+ 222   1              "Find matching pairs"
+ 223   1          };
+ 224   1          updateDisplay(newLines);
+ 225   1          play(startGameMusic);
+ 226   1      }
+ 227          
+ 228          void showGameBoard() {
+ 229   1          uchar i;
+ 230   1          uchar code newLines[4][20] = {
+ 231   1              "Lv:  Score:        ",
+ 232   1              "                   ",
+ 233   1              "                   ",
+ 234   1              "Combo:            "
+ 235   1          };
+ 236   1          updateDisplay(newLines);
+ 237   1          // 显示关卡
+ 238   1          xianshi(0, 3, level + '0');
+ 239   1          // 显示分数
+C51 COMPILER V9.57.0.0   LEDDISPLAY                                                        03/18/2025 16:19:42 PAGE 5   
+
+ 240   1          xianshi(0, 11, score/100 + '0');
+ 241   1          xianshi(0, 12, (score%100)/10 + '0');
+ 242   1          xianshi(0, 13, score%10 + '0');
+ 243   1          // 显示剩余按键次数
+ 244   1          // xianshi(0, 17, key_left/10 + '0');
+ 245   1          // xianshi(0, 18, key_left%10 + '0');
+ 246   1          // 显示连击数
+ 247   1          xianshi(3, 7, combo/10 + '0');
+ 248   1          xianshi(3, 8, combo%10 + '0');
+ 249   1          
+ 250   1          // 显示已翻开的卡片数字
+ 251   1          for(i = 0; i < 8; i++) {
+ 252   2              if(shown_map[i] == 1) {
+ 253   3                  if(i < 4) {
+ 254   4                      xianshi(1, i*3 + 1, game_map[i] + '0');
+ 255   4                  } else {
+ 256   4                      xianshi(2, (i-4)*3 + 1, game_map[i] + '0');
+ 257   4                  }
+ 258   3              }
+ 259   2          }
+ 260   1      }
+ 261          
+ 262          void showRule1Interface() {
+ 263   1          uchar code newLines[4][20] = {
+ 264   1              "Game Rules:        ",
+ 265   1              "Match pairs in key ",
+ 266   1              "Combo gives bonus! ",
+ 267   1              "11:Start 43:Back   "
+ 268   1          };
+ 269   1          updateDisplay(newLines);
+ 270   1      }
+ 271          
+ 272          void showEndInterface() {
+ 273   1          uchar code newLines[4][20] = {
+ 274   1              "Level Complete!     ",
+ 275   1              "Score:             ",
+ 276   1              "Max Combo:         ",
+ 277   1              "Key11: Next Level  "
+ 278   1          };
+ 279   1          updateDisplay(newLines);
+ 280   1          xianshi(1, 7, score/100 + '0');
+ 281   1          xianshi(1, 8, (score%100)/10 + '0');
+ 282   1          xianshi(1, 9, score%10 + '0');
+ 283   1          // xianshi(1, 7, score/10 + '0');
+ 284   1          // xianshi(1, 8, score%10 + '0');
+ 285   1          xianshi(2, 11, combo/10 + '0');
+ 286   1          xianshi(2, 12, combo%10 + '0');
+ 287   1          play(endGameMusic);
+ 288   1      }
+ 289          
+ 290          void showGameOverInterface() {
+ 291   1          uchar code newLines[4][20] = {
+ 292   1              "Game Over!         ",
+ 293   1              "Final Score:       ",
+ 294   1              "Level:             ",
+ 295   1              "Key11: Restart     "
+ 296   1          };
+ 297   1          updateDisplay(newLines);
+ 298   1          xianshi(1, 13, score/10 + '0');
+ 299   1          xianshi(1, 14, score%10 + '0');
+ 300   1          xianshi(2, 7, level/10 + '0');
+ 301   1          xianshi(2, 8, level%10 + '0');
+C51 COMPILER V9.57.0.0   LEDDISPLAY                                                        03/18/2025 16:19:42 PAGE 6   
+
+ 302   1          play(endGameMusic);
+ 303   1      }
+ 304          
+ 305          void checkGameComplete() {
+ 306   1          if(pairs_found >= 4) {  // 所有配对都找到了
+ 307   2              is_start = 0;
+ 308   2              level++;  // 增加关卡数
+ 309   2              showEndInterface();
+ 310   2          } else if(key_left <= 0) {  // 按键次数用尽
+ 311   2              is_start = 0;
+ 312   2              is_game_over = 1;  // 标记游戏失败
+ 313   2              showGameOverInterface();  // 显示游戏失败界面
+ 314   2          }
+ 315   1      }
+ 316          
+ 317          void processGameInput(int key) {
+ 318   1          int pos;
+ 319   1          int bonus = 0;
+ 320   1          if(key >= 4 && key <= 7) {
+ 321   2              pos = 7 - key;
+ 322   2          } else if(key >= 8 && key <= 11) {
+ 323   2              pos = 15 - key;
+ 324   2          } else {
+ 325   2              return;
+ 326   2          }
+ 327   1          
+ 328   1          if(shown_map[pos] == 0) {
+ 329   2              if(first_select == 0xFF) {
+ 330   3                  first_select = pos;
+ 331   3                  shown_map[pos] = 1;
+ 332   3                  showGameBoard();
+ 333   3                  play(pressKeySound);
+ 334   3              } else if(second_select == 0xFF) {
+ 335   3                  second_select = pos;
+ 336   3                  shown_map[pos] = 1;
+ 337   3                  showGameBoard();
+ 338   3                  play(pressKeySound);
+ 339   3                  
+ 340   3                  if(game_map[first_select] == game_map[second_select]) {
+ 341   4                      combo++;  // 增加连击数
+ 342   4                      // 计算分数奖励
+ 343   4                      bonus = 10 + (combo * level * 2);  // 基础分10分 + 连击奖励
+ 344   4                      score += bonus;
+ 345   4                      pairs_found++;
+ 346   4                      if(combo > 1) {
+ 347   5                          play(comboSound);  // 连击音效
+ 348   5                      } else {
+ 349   5                          play(matchSuccessSound);
+ 350   5                      }
+ 351   4                      checkGameComplete();
+ 352   4                  } else {
+ 353   4                      shown_map[first_select] = 0;
+ 354   4                      shown_map[second_select] = 0;
+ 355   4                      combo = 0;  // 重置连击数
+ 356   4                      play(matchFailSound);
+ 357   4                      delay_in_music(100);
+ 358   4                      showGameBoard();
+ 359   4                  }
+ 360   3                  first_select = 0xFF;
+ 361   3                  second_select = 0xFF;
+ 362   3              }
+ 363   2              // key_left--;  // 每次有效按键减少剩余次数
+C51 COMPILER V9.57.0.0   LEDDISPLAY                                                        03/18/2025 16:19:42 PAGE 7   
+
+ 364   2          }
+ 365   1      }
+ 366          
+ 367          void updateDisplay(uchar code newLines[4][20]) {
+*** WARNING C258 IN LINE 367 OF leddisplay.c: 'newLines': mspace on parameter ignored
+ 368   1          uchar i;
+ 369   1          lcd1602();
+ 370   1          for(i = 0; i < 4; i++) {
+ 371   2              xianshi1(i, 0, newLines[i]);
+ 372   2          }
+ 373   1      }
+ 374          
+ 375          main() {
+ 376   1          uchar i;
+ 377   1          level = 1;
+ 378   1          showStartInterface();
+ 379   1          while(1) {
+ 380   2              key = keys[keyscan()];
+ 381   2              switch(key) {
+ 382   3                  case 3: // Key11
+ 383   3                      if(!is_start) {
+ 384   4                          is_start = 1;
+ 385   4                          if(is_game_over) {  // 如果游戏失败
+ 386   5                              is_game_over = 0;  // 重置游戏失败标志
+ 387   5                              level = 1;  // 重置到第一关
+ 388   5                              score = 0;  // 重置分数
+ 389   5                              pairs_found = 0;
+ 390   5                              key_left = 100;  // 重置步数为初始值
+ 391   5                          } else if(pairs_found >= 4) {
+ 392   5                              // 保留当前分数
+ 393   5                              pairs_found = 0;
+ 394   5                              // key_left = 20 - (level * 2);  // 调整步数减少量
+ 395   5                              // if(key_left < 8) key_left = 8;  // 确保最低有8步
+ 396   5                          }
+ 397   4                          combo = 0;  // 重置连击数
+ 398   4                          for(i = 0; i < 8; i++) {
+ 399   5                              shown_map[i] = 0;
+ 400   5                          }
+ 401   4                          first_select = 0xFF;
+ 402   4                          second_select = 0xFF;
+ 403   4                          shuffle_array();
+ 404   4                          showGameBoard();
+ 405   4                          play(startGameMusic);
+ 406   4                      } else {
+ 407   4                          is_start = 0;
+ 408   4                          showEndInterface();
+ 409   4                      }
+ 410   3                      break;
+ 411   3                  case 13: // Key43
+ 412   3                      showRule1Interface();
+ 413   3                      break;
+ 414   3                  case 16:
+ 415   3                      break;
+ 416   3                  default:
+ 417   3                      if(is_start) {
+ 418   4                          processGameInput(key);
+ 419   4                      }
+ 420   3                      break;
+ 421   3              }
+ 422   2              if(key != 3 && key != 16) {
+ 423   3                  play(pressKeySound);
+ 424   3              }
+C51 COMPILER V9.57.0.0   LEDDISPLAY                                                        03/18/2025 16:19:42 PAGE 8   
+
+ 425   2          }
+ 426   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1670    ----
+   CONSTANT SIZE    =    560    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     88      17
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  3 WARNING(S),  0 ERROR(S)

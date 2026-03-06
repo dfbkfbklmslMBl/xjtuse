@@ -1,0 +1,101 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\QUARTUSDATA\project4\simulation\qsim
+vfifo_controller
+I<Be^[R5MJ3<TMZ<:TCiSm1
+V6VRcK1_6f[E2e^8E358Dn1
+Z1 dD:\QUARTUSDATA\project4\simulation\qsim
+w1716131140
+Z2 8fifo_controller.vo
+Z3 Ffifo_controller.vo
+L0 31
+Z4 OV;L;10.1d;51
+r1
+31
+Z5 !s90 -work|work|fifo_controller.vo|
+Z6 o-work work -O0
+!i10b 1
+!s100 mbkiN:UMIVIWX943h82z<0
+!s85 0
+!s108 1716131140.499000
+Z7 !s107 fifo_controller.vo|
+!s101 -O0
+vfifo_controller_vlg_check_tst
+!i10b 1
+!s100 9NH1KkTX7VO_`TZB;7i5d3
+IJGGD5I:6IN3SWbgmDU=:B0
+VkRXUcV9i@n?BzOHJZ=80n0
+R1
+Z8 w1716131139
+Z9 8Waveform7.vwf.vt
+Z10 FWaveform7.vwf.vt
+L0 65
+R4
+r1
+!s85 0
+31
+Z11 !s108 1716131140.557000
+Z12 !s107 Waveform7.vwf.vt|
+Z13 !s90 -work|work|Waveform7.vwf.vt|
+!s101 -O0
+R6
+vfifo_controller_vlg_sample_tst
+!i10b 1
+!s100 K^@QYkS^JYWQ;Jj[`J9UH2
+I>kca8AbSB:D6Pk5mZ>oIb0
+Z14 Vf2OGDCTlln@i_1bQe1EAj1
+R1
+R8
+R9
+R10
+L0 29
+R4
+r1
+!s85 0
+31
+R11
+R12
+R13
+!s101 -O0
+R6
+vfifo_controller_vlg_vec_tst
+!i10b 1
+!s100 TSH8[4:=HG^[QdT_M]^c`0
+IH_W>z=mDeUF>NI6T>J:EZ3
+Z15 V1SCKfH^G_oP[KT1o_PM[L1
+R1
+R8
+R9
+R10
+L0 473
+R4
+r1
+!s85 0
+31
+R11
+R12
+R13
+!s101 -O0
+R6
+vmanage
+I9iW<IOg3[Snhnm`;1`@M^3
+VlSZ;P_kfAM`5LmTGZa03@0
+R1
+w1716083563
+8D:/QUARTUSDATA/project4/manage.v
+FD:/QUARTUSDATA/project4/manage.v
+L0 39
+R4
+r1
+31
+o-vlog01compat -work work -O0
+!s92 -vlog01compat -work work +incdir+D:/QUARTUSDATA/project4 -O0
+!i10b 1
+!s100 KaPEHZiKnFm8AoS^O3^4m3
+!s85 0
+!s108 1716091406.417000
+!s107 D:/QUARTUSDATA/project4/manage.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/QUARTUSDATA/project4|D:/QUARTUSDATA/project4/manage.v|
+!s101 -O0

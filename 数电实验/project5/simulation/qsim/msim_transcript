@@ -1,0 +1,25 @@
+# Reading D:/QUARTUS/modelsim_ase/tcl/vsim/pref.tcl 
+# do fif0__run_msim_rtl_verilog.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Copying D:\QUARTUS\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied D:\QUAR# Copying D:\QUARTUS\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini
+# Modifying mode
+# 
+# vlog -vlog01compat -work work +incdir+D:/QUARTUSDATA/project5 {D:/QUARTUSDATA/project5/myram.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module myram
+# 
+# Top level modules:
+# 	myram
+echnology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# ** Warning: (vlog-6) -- Waiting for lock by "unknown". Lockfile is "D:/QUARTUSDATA/project5/simulation/qsim/rtl_work/_lock".
+# 
+# -- Compiling module myram
+# 
+# Top level modules:
+# 	myram

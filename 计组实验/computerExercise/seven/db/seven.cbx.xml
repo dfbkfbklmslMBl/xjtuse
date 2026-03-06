@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="seven">
+		<CBX_INST_ENTRY INSTANCE_NAME="|seven|top:top_inst|clock_gen:clock_gen_inst|lpm_divide:Mod1" CBX_FILE_NAME="lpm_divide_ocm.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

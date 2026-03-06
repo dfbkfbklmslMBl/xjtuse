@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="fifo_controller">
+		<CBX_INST_ENTRY INSTANCE_NAME="|fifo_controller|altsyncram:ram_instance" CBX_FILE_NAME="altsyncram_bs01.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

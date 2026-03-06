@@ -1,0 +1,27 @@
+
+State Machine - |key_led|out2_in
+Name out2_in.out2_in1 
+out2_in.00 0 
+out2_in.out2_in1 1 
+
+State Machine - |key_led|out1_in
+Name out1_in.out1_in7 out1_in.out1_in6 out1_in.out1_in5 out1_in.out1_in4 out1_in.out1_in3 out1_in.out1_in2 out1_in.out1_in1 out1_in.000 
+out1_in.000 0 0 0 0 0 0 0 0 
+out1_in.out1_in1 0 0 0 0 0 0 1 1 
+out1_in.out1_in2 0 0 0 0 0 1 0 1 
+out1_in.out1_in3 0 0 0 0 1 0 0 1 
+out1_in.out1_in4 0 0 0 1 0 0 0 1 
+out1_in.out1_in5 0 0 1 0 0 0 0 1 
+out1_in.out1_in6 0 1 0 0 0 0 0 1 
+out1_in.out1_in7 1 0 0 0 0 0 0 1 
+
+State Machine - |key_led|out0_in
+Name out0_in.out0_in1 
+out0_in.00 0 
+out0_in.out0_in1 1 
+
+State Machine - |key_led|out
+Name out.00 out.out2 out.out1 
+out.00 0 0 0 
+out.out1 1 0 1 
+out.out2 1 1 0 

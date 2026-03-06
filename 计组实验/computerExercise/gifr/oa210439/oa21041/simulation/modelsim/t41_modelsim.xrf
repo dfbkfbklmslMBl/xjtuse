@@ -1,0 +1,10 @@
+vendor_name = ModelSim
+source_file = 1, E:/oa21041/t41.bdf
+source_file = 1, E:/oa21041/db/t41.cbx.xml
+design_name = t41
+instance = comp, \RST1~I\, RST1, t41, 1
+instance = comp, \CLK1~I\, CLK1, t41, 1
+instance = comp, \T1~I\, T1, t41, 1
+instance = comp, \T2~I\, T2, t41, 1
+instance = comp, \T3~I\, T3, t41, 1
+instance = comp, \T4~I\, T4, t41, 1

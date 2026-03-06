@@ -1,0 +1,51 @@
+module fifo (
+	input clock,
+	input reset,
+	input wr_en,
+	input rd_en,
+	input [7:0] data_in,
+	output [7:0] data_out,
+	output empty,
+	output full
+);
+
+	reg [7:0] write_pointer;
+	reg [7:0] read_pointer;
+	reg [8:0] count; // 使能256个地址深度，为9位宽
+
+	wire [7:0] ram_q;
+
+	myram ram (
+		.address(write_pointer),
+		.clock(clock),
+		.data(data_in),
+		.wren(wr_en && !full),
+		.q(ram_q)
+	);
+
+	// 写逻辑
+	always @(posedge clock or posedge reset) begin
+		if (reset) begin
+			write_pointer <= 8'd0;
+			count <= 9'd0;
+		end else if (wr_en && !full) begin
+			write_pointer <= write_pointer + 1'b1;
+			count <= count + 1'b1;
+		end
+	end
+
+	// 读逻辑
+	always @(posedge clock or posedge reset) begin
+		if (reset) begin
+			read_pointer <= 8'd0;
+		end else if (rd_en && !empty) begin
+			read_pointer <= read_pointer + 1'b1;
+			count <= count - 1'b1;
+		end
+	end
+
+	assign empty = (count == 0);
+	assign full = (count == 256);
+	assign data_out = (rd_en && !empty) ? ram_q : 8'b0;
+
+endmodule

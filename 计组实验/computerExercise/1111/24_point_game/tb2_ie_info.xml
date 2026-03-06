@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<!--Created by Liquid XML 2008 (www.liquid-technologies.com) for Altera-->
+<ProgramExecution xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
+	<QuartusExecution>
+		<AddressBits>64</AddressBits>
+		<ApplicationError>
+		<Bits>64</Bits>
+		<CommandLine>quartus E:\computerExercise\1111\24_point_game\MCU8951.qpf</CommandLine>
+		<ErrorMessage>Access Violation at 0X00007FF808338FD0</ErrorMessage>
+		<Line>0</Line>
+		<Platform>windows</Platform>
+		<SourceFile>unknown</SourceFile>
+		<StackTrace>
+	0x7ff808338fcf: (?clone_oterm@ADB_CLONE_MANAGER@@QEAA_NPEAVADB_OTERM@@PEAVADB_NETLIST_MANAGER@@_N@Z + 0x6bf)
+	0x7ff808324d24: (?set_chip_entry@ADB_CAP_AGENT_QT@@UEAAXPEAVADB_NETLIST_MANAGER@@@Z + 0x34)
+	0x7ff8082e057b: (?get_adb_netlist@ADB_CDB_INTERFACE_BODY_IMPL@@QEAAPEAVADB_NETLIST@@XZ + 0xbb)
+	0x7ff8083ea235: (?get_list_of_values@?$ADB_OTERM_PROPERTY_TEMPLATE@W4ADB_INT_DATA_ENUM@@H@@UEAA_NPEAVADB_CDB_INTERFACE_BODY@@PEAV?$list@V?$basic_string@DU?$char_traits@D@_Dinkum_std@@V?$MEM_STL_ALLOCATOR@D@@@_Dinkum_std@@V?$MEM_STL_ALLOCATOR@V?$basic_string@DU?$char_traits@D@_Dinkum_std@@V?$MEM_STL_ALLOCATOR@D@@@_Dinkum_std@@@@@_Dinkum_std@@@Z + 0x92fc5)
+	0x7ff8c2588473: (?get_adb_cdb_interface@DBMUI_MANAGER@@QEAAPEAVADB_CDB_INTERFACE@@PEBD_N11@Z + 0x243)
+	0x7ff8081d010b: (??0ADB_CDB_INTERFACE_INST@@QEAA@PEBDH_N1@Z + 0x14b)
+	0x7ff80e84bdef: (?trUtf8@ECOQ_TREE_SELECTION_MODEL@@SA?AVQString@@PEBD0H@Z + 0x834f)
+	 0x54ddeb5a: (?activate@QMetaObject@@SAXPEAVQObject@@PEBU1@HPEAPEAX@Z + 0x53a)
+	0x7ff80e84d261: (?trUtf8@ECOQ_TREE_SELECTION_MODEL@@SA?AVQString@@PEBD0H@Z + 0x97c1)
+	 0x54ddeb5a: (?activate@QMetaObject@@SAXPEAVQObject@@PEBU1@HPEAPEAX@Z + 0x53a)
+	0x7ff80e8503f3: (?ntfq_msg_notify_project_close@ECOQ_NTFQ_NOTIFY_TARGET@@UEAA_N_K_N@Z + 0x33)
+	0x7ff8ab1e1160: (?dispatch_notify_msg@NTFQ_NOTIFY_TARGET@@IEAA_NPEBVNTFQ_NOTIFY_MAP@@I_K_N@Z + 0x60)
+	0x7ff8ab1e12ea: (?on_ntfq_notify@NTFQ_NOTIFY_TARGET@@UEAA_NI_K_N@Z + 0x3a)
+	0x7ff8ab1e1488: (?on_ntfq_notify@NTFQ_NOTIFY_TARGET@@UEAA_NI_K_N@Z + 0x1d8)
+	0x7ff8b1a05026: (?close_impl@PROJ_PROJECT@@AEAA_NXZ + 0xd6)
+	0x7ff8b1a09c8e: (?close@PROJ_PROJECT@@SA_NXZ + 0x6e)
+	0x7ff8ad725bd4: (?closeEvent@QUI_FRAME_WND@@MEAAXPEAVQCloseEvent@@@Z + 0x214)
+	 0x551aa551: (?event@QWidget@@MEAA_NPEAVQEvent@@@Z + 0x4c1)
+	 0x554d89a4: (?event@QMainWindow@@MEAA_NPEAVQEvent@@@Z + 0x284)
+	 0x551628f5: (?notify_helper@QApplicationPrivate@@QEAA_NPEAVQObject@@PEAVQEvent@@@Z + 0xf5)
+	 0x55165297: (?notify@QApplication@@UEAA_NPEAVQObject@@PEAVQEvent@@@Z + 0x17f7)
+	 0x54dca7c1: (?notifyInternal@QCoreApplication@@AEAA_NPEAVQObject@@PEAVQEvent@@@Z + 0x71)
+	 0x551a9d74: (?close_helper@QWidgetPrivate@@QEAA_NW4CloseMode@1@@Z + 0xa4)
+	 0x551c46c0: (?restoreOverrideCursor@QApplication@@SAXXZ + 0x10b0)
+	0x7ff8cb4a83f0: (DispatchMessageW + 0x740)
+	0x7ff8cb4a80ab: (DispatchMessageW + 0x3fb)
+	0x7ff8cb4b31dc: (GetClassLongW + 0x58c)
+	0x7ff8cc0743e3: (KiUserCallbackDispatcher + 0x23)
+	0x7ff8c9791553: (NtUserMessageCall + 0x13)
+	0x7ff8cb4a6804: (GetDlgCtrlID + 0x5c4)
+	0x7ff8cb4a6311: (GetDlgCtrlID + 0xd1)
+	0x7ff8c51eb4ff: (Ordinal43 + 0x26f)
+	0x7ff8c51d3101: (GetThemeEnumValue + 0x131)
+	0x7ff8c51db73b: (ThemeInitApiHook + 0x1d4b)
+	0x7ff8c51da1c0: (ThemeInitApiHook + 0x7d0)
+	0x7ff8cb4a6494: (GetDlgCtrlID + 0x254)
+	 0x55639b17: (?sendEvent@QInputContext@@QEAAXAEBVQInputMethodEvent@@@Z + 0x2e7)
+	 0x551c5ebf: (?restoreOverrideCursor@QApplication@@SAXXZ + 0x28af)
+	0x7ff8cb4a83f0: (DispatchMessageW + 0x740)
+	0x7ff8cb4a80ab: (DispatchMessageW + 0x3fb)
+	0x7ff8cb4b31dc: (GetClassLongW + 0x58c)
+	0x7ff8cc0743e3: (KiUserCallbackDispatcher + 0x23)
+	0x7ff8c9791553: (NtUserMessageCall + 0x13)
+	0x7ff8cb4a6804: (GetDlgCtrlID + 0x5c4)
+	0x7ff8cb4a6311: (GetDlgCtrlID + 0xd1)
+	0x7ff8c51eb4ff: (Ordinal43 + 0x26f)
+	0x7ff8c51d3199: (GetThemeEnumValue + 0x1c9)
+	0x7ff8c51db73b: (ThemeInitApiHook + 0x1d4b)
+	0x7ff8c51da1c0: (ThemeInitApiHook + 0x7d0)
+	0x7ff8cb4a6494: (GetDlgCtrlID + 0x254)
+	 0x55639b17: (?sendEvent@QInputContext@@QEAAXAEBVQInputMethodEvent@@@Z + 0x2e7)
+	 0x551c5ebf: (?restoreOverrideCursor@QApplication@@SAXXZ + 0x28af)
+	0x7ff8cb4a83f0: (DispatchMessageW + 0x740)
+	0x7ff8cb4a7eb0: (DispatchMessageW + 0x200)
+	 0x54df2f69: (?processEvents@QEventDispatcherWin32@@UEAA_NV?$QFlags@W4ProcessEventsFlag@QEventLoop@@@@@Z + 0x3b9)
+	 0x551c3564: (?translateTouchEvent@QApplicationPrivate@@QEAA_NAEBUtagMSG@@@Z + 0x884)
+	 0x54dc9cf0: (?exec@QEventLoop@@QEAAHV?$QFlags@W4ProcessEventsFlag@QEventLoop@@@@@Z + 0x230)
+	 0x54dce5ff: (?exec@QCoreApplication@@SAHXZ + 0xdf)
+	0x7ff65b88108e:
+	0x7ff8ac74a7f8: (?msg_exe_fini@@YAXXZ + 0x58)
+	0x7ff8ac74af3c: (?msg_exe_fini@@YAXXZ + 0x79c)
+	0x7ff8ac801f14: (??1MEM_SEGMENT_INTERNAL@@UEAA@XZ + 0x194)
+	0x7ff8ac74b8bf: (?msg_exe_main@@YAHHPEAPEBDP6AHH0@Z@Z + 0x8f)
+	0x7ff65b881ab2:
+	0x7ff65b8813de:
+	0x7ff8cb3d259c: (BaseThreadInitThunk + 0x1c)
+	0x7ff8cc02af37: (RtlUserThreadStart + 0x27)
+		</StackTrace>
+		<Subsystem>unknown</Subsystem>
+	</ApplicationError>
+	<Compilation>
+			<CompileID>0</CompileID>
+			<DeviceFamily/>
+			<IncrementalCompilation/>
+			<TopLevelEntityName/>
+		</Compilation>
+		<DateInvoked>2025/03/18 10:31:10</DateInvoked>
+		<ElapsedTime>1145</ElapsedTime>
+		<IP>192.168.81.1,192.168.31.1,192.168.13.66</IP>
+		<IsInternal>false</IsInternal>
+		<IsQt>true</IsQt>
+		<License>
+			<Edition>Full Version</Edition>
+			<LicenseHostID>10a51d7379d1</LicenseHostID>
+		</License>
+		<Machine>
+			<CPUCountLogical>20</CPUCountLogical>
+			<CPUCountPhysical>1</CPUCountPhysical>
+			<CPUSpeed>2688</CPUSpeed>
+			<Hostname>LAPTOP-S290MH3H</Hostname>
+			<NIC>
+				<Address>6c24084c9dda</Address>
+			</NIC>
+			<NIC>
+				<Address>10a51d7379d5</Address>
+			</NIC>
+			<NIC>
+				<Address>00ffcc2966ad</Address>
+			</NIC>
+			<NIC>
+				<Address>005056c00001</Address>
+			</NIC>
+			<NIC>
+				<Address>005056c00008</Address>
+			</NIC>
+			<NIC>
+				<Address>10a51d7379d1</Address>
+			</NIC>
+			<NIC>
+				<Address>10a51d7379d2</Address>
+			</NIC>
+			<NIC>
+				<Address>12a51d7379d1</Address>
+			</NIC>
+			<OS>Windows 7</OS>
+			<OSAddressBits>64</OSAddressBits>
+			<OSVersion>6.2</OSVersion>
+			<Platform>windows</Platform>
+			<ScreenResolution>unknown</ScreenResolution>
+			<TotalPhysicalRAM>16108</TotalPhysicalRAM>
+			<TotalVirtualRAM>21504</TotalVirtualRAM>
+		</Machine>
+		<Name>quartus</Name>
+		<PeakMemoryUsed>0</PeakMemoryUsed>
+		<ProjectRevision>
+			<ProjectName/>
+			<Revision/>
+		</ProjectRevision>
+		<QuartusInstallation>
+			<InstallationID>118902013861338.17136049891742</InstallationID>
+			<Version>
+				<Build>162</Build>
+				<BuildSite>SJ</BuildSite>
+				<BuildSuffix/>
+				<Edition>Full Version</Edition>
+				<ServicePack>0</ServicePack>
+				<VersionNumber>13.1</VersionNumber>
+			</Version>
+		</QuartusInstallation>
+		<QuartusUser>
+			<AlteraUserName/>
+			<FAEContactName/>
+			<TalkbackStatus>
+				<DateSet/>
+				<TalkbackOn>true</TalkbackOn>
+			</TalkbackStatus>
+			<UserID>118902013861338.171358885519868</UserID>
+			<UserName>86177</UserName>
+		</QuartusUser>
+	</QuartusExecution>
+	<SchemaVersion>schema_2013-01-18</SchemaVersion>
+</ProgramExecution>
+
